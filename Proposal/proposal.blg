@@ -1,0 +1,60 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: proposal.aux
+The style file: alpha.bst
+Database file #1: proposal.bib
+I was expecting a `,' or a `}'---line 13 of file proposal.bib
+ :   
+ :   url = "https://archive.ics.uci.edu/ml/datasets/UJI+Pen+Characters+\%28Version+2\%29"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 28 of file proposal.bib
+ :   
+ :   institution={Department of Computer Engineering, Bogazici University}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "??"
+Warning--empty journal in Alpaydin:1998
+Warning--empty journal in Zhu:2005
+You've used 4 entries,
+            2543 wiz_defined-function locations,
+            581 strings with 5198 characters,
+and the built_in function-call counts, 1505 in all, are:
+= -- 129
+> -- 100
+< -- 2
++ -- 36
+- -- 35
+* -- 103
+:= -- 270
+add.period$ -- 11
+call.type$ -- 4
+change.case$ -- 30
+chr.to.int$ -- 4
+cite$ -- 6
+duplicate$ -- 55
+empty$ -- 97
+format.name$ -- 40
+if$ -- 288
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 3
+newline$ -- 23
+num.names$ -- 12
+pop$ -- 41
+preamble$ -- 1
+purify$ -- 34
+quote$ -- 0
+skip$ -- 47
+stack$ -- 0
+substring$ -- 29
+swap$ -- 3
+text.length$ -- 2
+text.prefix$ -- 2
+top$ -- 0
+type$ -- 32
+warning$ -- 2
+while$ -- 10
+width$ -- 6
+write$ -- 47
+(There were 2 error messages)

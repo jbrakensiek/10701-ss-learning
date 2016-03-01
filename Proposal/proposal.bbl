@@ -1,0 +1,26 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{LPM{\etalchar{+}}08}
+
+\bibitem[AA98]{Alpaydin:1998}
+E~Alpaydin and Fevzi Alimoglu.
+\newblock Uci pen-based recognition of handwritten digits data set.
+\newblock 1998.
+
+\bibitem[Lic13]{Lichman:2013}
+M.~Lichman.
+\newblock {UCI} machine learning repository, 2013.
+
+\bibitem[LPM{\etalchar{+}}08]{Llorens:2008}
+David Llorens, Federico Prat, Andr{\'e}s Marzal, Juan~Miguel Vilar,
+  Mar{\'\i}a~Jos{\'e} Castro, Juan-Carlos Amengual, Sergio Barrachina, Antonio
+  Castellanos, Salvador~Espa{\~n}a Boquera, JA~G{\'o}mez, et~al.
+\newblock The ujipenchars database: a pen-based database of isolated
+  handwritten characters.
+\newblock In {\em LREC}, 2008.
+
+\bibitem[Zhu05]{Zhu:2005}
+Xiaojin Zhu.
+\newblock Semi-supervised learning literature survey.
+\newblock 2005.
+
+\end{thebibliography}
