@@ -17,7 +17,8 @@ class tsvm:
         self.unlabeled_data = unlabelvec
         self.labels = outputvec
         self.totaldata = np.concatenate(inputvec, unlabeledvec)
-    
+        self.labelcomplete = np.concatenate(outputvec, np.zeros(numunlabeled))
+
     self.laplacian = np.matrix([])
     ''' Boolean value necessary to specify is objective function should be
         minimized or maximized.
@@ -65,8 +66,12 @@ class tsvm:
     def spectralgraphtransducer():
         generateGraph()
         #the next line because np.sum is faster than any for loop
-        sumlabels = np.sum(outputvec)
+        sumlabels = np.sum(self.labels)
         #length(outputvec) - this number is always even
         numpositive = ((numpoints + sumlabels) / 2)
         numnegative = ((numpoints - sumlabels) / 2)
+        #the names of the parameters are from the paper, I will add
+        #explanations for what these parameters mean soon.
+        gammaplus = sqrt(float(numnegative)/float(numpositive))
+        gammaminus = sqrt(float(numnegative)/float(numpositive))
         #more stuff to put here
