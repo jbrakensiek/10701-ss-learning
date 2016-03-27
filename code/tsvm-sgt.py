@@ -20,6 +20,7 @@ class tsvm:
         self.labelcomplete = np.concatenate(outputvec, np.zeros(numunlabeled))
 
     self.laplacian = np.matrix([])
+    
     ''' Boolean value necessary to specify is objective function should be
         minimized or maximized.
         The way the optimization function is designed, it can be expressed
@@ -39,39 +40,50 @@ class tsvm:
         desired training algorithm on the code.
     '''
 
-    ''' code for spectral graph transducer. Implemented as described in
-        Joachims 2003. Optimizing this is shown to be equivalent to optimizing
-        TSVMs.
+    ''' Code for spectral graph transducer. Implemented as described in
+        Joachims 2003. Optimizing this is shown equivalent to optimizing
+        TSVMs in Joachims 2003.
     '''
 
     ''' This function generates the normalized Laplacian matrix of the
         similarity graph.
     '''
     def generateGraph():
-        self.laplacian = np.zeros([self.numpoints + self.numunlabeled,\
-            self.numpoints + numunlabeled])
+        self.laplacian = np.matrix(np.zeros([self.numpoints +\
+            self.numunlabeled, self.numpoints + numunlabeled]))
         #find a faster way to do the following with numpy functions
         for i in range(self.numpoints + self.numlabeled):
             ithvec = self.totaldata[i]
             sum_ithrow = 0
-            for j in range(self.numpoints + self.numlabeled):
+            for j in range(i):
                 jthvec = self.totaldata[j]
                 distancevec = ithvec - jthvec
                 self.laplacian[i][j] = -1 * math.exp(-1 * np.dot(distancevec,\
                     distancevec))
+                self.laplacian[j][i] = self.laplacian[i][j]
                 sum_ithrow += laplacian[i][j]
             self.laplacian[i] /= sum_ithrow
             self.laplacian[i][i] = 1
 
     def spectralgraphtransducer():
         generateGraph()
+
+        #using eigh over eig because it is optimized to work on symmetric
+        #matrices
+        laplace_eigval, laplace_eigvec = np.eigh(self.laplacian)
+        laplace_eigval = laplace_eigval * laplace_eigval
+
         #the next line because np.sum is faster than any for loop
         sumlabels = np.sum(self.labels)
+
         #length(outputvec) - this number is always even
         numpositive = ((numpoints + sumlabels) / 2)
         numnegative = ((numpoints - sumlabels) / 2)
+
         #the names of the parameters are from the paper, I will add
         #explanations for what these parameters mean soon.
         gammaplus = sqrt(float(numnegative)/float(numpositive))
-        gammaminus = sqrt(float(numnegative)/float(numpositive))
+        gammaminus = -1 * sqrt(float(numpositive)/float(numnegative))
+
         #more stuff to put here
+        
