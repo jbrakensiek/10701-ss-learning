@@ -22,8 +22,9 @@ class PenParser:
         data = np.zeros((len(lines), 16))
         answers = np.zeros(len(lines))
 
+        lines = np.random.permutation(lines)
+
         for i in range(len(lines)):
-            print lines[i]
             data[i,] = map(float, lines[i][:-1])
             answers[i] = int(lines[i][-1])
 
@@ -52,7 +53,6 @@ class PenParser:
         num_train = data_train.shape[0]
         num_labeled = int(num_train * labeled_fraction)
 
-        # should we randomize this?
         X_train_labeled = data_train[0:num_labeled, ]
         Y_train_labeled = answers_train[0:num_labeled]
         X_train_unlabeled = data_train[num_labeled:num_train, ]

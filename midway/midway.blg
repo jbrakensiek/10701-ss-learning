@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: midway.aux
+The style file: alpha.bst
+Database file #1: midway.bib
+I was expecting a `,' or a `}'---line 13 of file midway.bib
+ :   
+ :   url = "https://archive.ics.uci.edu/ml/datasets/UJI+Pen+Characters+\%28Version+2\%29"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 65 of file midway.bib
+ :   
+ :   institution={Department of Computer Engineering, Bogazici University}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty journal in Alpaydin:1998
+Warning--empty journal in Zhu:2005
+You've used 7 entries,
+            2543 wiz_defined-function locations,
+            601 strings with 5751 characters,
+and the built_in function-call counts, 3089 in all, are:
+= -- 301
+> -- 169
+< -- 4
++ -- 61
+- -- 59
+* -- 209
+:= -- 509
+add.period$ -- 22
+call.type$ -- 7
+change.case$ -- 50
+chr.to.int$ -- 7
+cite$ -- 9
+duplicate$ -- 122
+empty$ -- 214
+format.name$ -- 67
+if$ -- 634
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 6
+newline$ -- 38
+num.names$ -- 21
+pop$ -- 62
+preamble$ -- 1
+purify$ -- 57
+quote$ -- 0
+skip$ -- 106
+stack$ -- 0
+substring$ -- 140
+swap$ -- 25
+text.length$ -- 4
+text.prefix$ -- 2
+top$ -- 0
+type$ -- 56
+warning$ -- 2
+while$ -- 27
+width$ -- 9
+write$ -- 88
+(There were 2 error messages)
