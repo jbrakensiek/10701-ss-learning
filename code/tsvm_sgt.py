@@ -10,15 +10,15 @@ class tsvm:
         We will use both in this code, so let's be clear about the distinction
         to avoid confusion
     '''
-    def __init__(inputvec, outputvec, unlabeledvec):
+    def __init__(self, inputvec, outputvec, unlabeledvec):
         (self.numpoints, self.datadimension) = inputvec.shape
-        self.numunlabeled = unlabeledvec.shape
+        self.numunlabeled = unlabeledvec.shape[0]
         self.labeled_data = inputvec
         self.numtotal = self.numunlabeled + self.numpoints
-        self.unlabeled_data = unlabelvec
+        self.unlabeled_data = unlabeledvec
         self.labels = outputvec
         self.totaldata = np.concatenate((inputvec, unlabeledvec))
-        self.labelcomplete = np.concatenate((outputvec, np.zeros(numunlabeled)))
+        self.labelcomplete = np.concatenate((outputvec, np.zeros(self.numunlabeled)))
         self.laplacian = np.matrix([])
     
     ''' Boolean value necessary to specify is objective function should be
