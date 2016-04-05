@@ -24,7 +24,7 @@ class TSVM:
     num_p is the number of unlabeled examples we are allowed to assign to
     the "true" class.
     """
-    def learn(self,C, C_s, num_p):
+    def learn(self,C, C_s, num_p, init_weight):
         weights = []
         for x in range(0, len(self.x_train)):
             weights.append(C)
@@ -35,13 +35,11 @@ class TSVM:
         #u_dists contains the margin sizes of the unlabeled points.
         #We take the largest sizes and classify them as 1
         u_dists.sort()
-        #print(u_dists)
         for x in range(len(u_dists)-1, max([len(u_dists)-1-num_p, -1]), -1):
             self.y_unlabeled[u_dists[x][1]] = 1
         #C_sn is how much weight we give to unlabeled negative examples
-        C_sn = 10**-2
+        C_sn = init_weight
         C_sp = C_sn*num_p / (len(self.x_unlabeled)-num_p)
-        #print(self.y_unlabeled)
         #initialize the unlabeled weights
         u_weights = []
         for c in self.y_unlabeled:
@@ -49,9 +47,9 @@ class TSVM:
                 u_weights.append(C_sp)
             else:
                 u_weights.append(C_sn)
-        while(C_sn < C or C_sp < C):
+        while(C_sn < C_s or C_sp < C_s):
             #fit the unlabeled data with their labels
-            print(C_sn, C, C_sp)
+            #print(C_sn, C, C_sp)
             self.clf.fit(np.concatenate((self.x_train, self.x_unlabeled), axis=0),\
                     np.concatenate((self.y_train, self.y_unlabeled), axis=0),\
                     sample_weight = np.concatenate((weights, u_weights), axis=0))
@@ -66,15 +64,13 @@ class TSVM:
             """
             for i in range(0, len(self.x_unlabeled)):
                 z = 1-self.clf.decision_function([self.x_unlabeled[i]])[0]*self.y_unlabeled[i]
-                if(z > 10**-5):
+                if(z > 10**-5): #Ignore zetas that are almost zero (round-off errors and such)
                     if(self.y_unlabeled[i] == 1):
                         zeta_pos.append([z, i])
                     else:
                         zeta_neg.append([z, i])
             zeta_pos.sort()
             zeta_neg.sort()
-            #print(zeta_pos)
-            #print(zeta_neg)
             """
             The algorithm doesn't describe how to choose the points we need to flip,
             so I'm going to use a greedy algorithm 
@@ -86,13 +82,13 @@ class TSVM:
                     neg_idx+=1
                 if(neg_idx == len(zeta_neg)):
                     break
-                print("Hit!")
+                #print("Hit!")
                 #We have a match. Flip the labels
                 self.y_unlabeled[zeta_pos[x][1]] = -1
                 self.y_unlabeled[zeta_neg[neg_idx][1]] = 1
                 neg_idx+=1
-            C_sn = min(C, 2*C_sn)
-            C_sp = min(C, 2*C_sp)
+            C_sn = min(C_s, 2*C_sn)
+            C_sp = min(C_s, 2*C_sp)
             #Now we update the unlabeled weights
             for x in range(0, len(u_weights)):
                 if(self.y_unlabeled[x] == 1):
@@ -105,7 +101,8 @@ class TSVM:
 
     def score(self, x_test, y_test):
         return self.clf.score(x_test, y_test)
-
+    def decision_function(self, x_test):
+        return self.clf.decision_function(x_test)
 """
 num_labeled = 3
 num_unlabeled = 3
