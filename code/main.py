@@ -14,13 +14,13 @@ def predict_digit(digit, X_train, Y_train, X_unlab, X_test, Y_test):
             Y_test[i] = 1
     T = tsvm.TSVM(X_train, Y_train, X_unlab)
     frac = int(0.1*len(X_unlab))
-    T.learn(1, 0.8, frac, 10**-2)
+    T.learn(1, 0.9, frac, 10**-2)
     print("Test accuracy: " + str(T.score(X_test, Y_test)))
     return T.decision_function(X_test)
 
 #def main():
 pen = parser.PenParser()
-X_train, Y_train, X_unlab, X_test, Y_test = pen.retrieve_pendigits_data(0.1)
+X_train, Y_train, X_unlab, X_test, Y_test = pen.retrieve_pendigits_data(0.50)
 c = tsvm_sgt.tsvm(X_train, Y_train, X_unlab)
 boundaries = []
 for dig in range(0, 10):
@@ -43,6 +43,11 @@ for i in range(0, len(Y_test)):
         correct += 1
 
 print(float(correct) / len(Y_test))
+confusion_matrix = np.zeros((10, 10))
+for a in range(0, len(predictions)):
+    confusion_matrix[int(predictions[a])][int(Y_test[a])]+=1
+
+print(confusion_matrix)
 
 """
 if __name__ == "__main__":

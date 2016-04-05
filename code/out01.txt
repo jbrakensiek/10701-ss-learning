@@ -1,0 +1,31 @@
+Predicting 0
+Test accuracy: 0.969411092053
+Predicting 1
+Test accuracy: 0.940537449971
+Predicting 2
+Test accuracy: 0.971698113208
+Predicting 3
+Test accuracy: 0.973985134362
+Predicting 4
+Test accuracy: 0.9594053745
+Predicting 5
+Test accuracy: 0.930817610063
+Predicting 6
+Test accuracy: 0.97970268725
+Predicting 7
+Test accuracy: 0.969125214408
+Predicting 8
+Test accuracy: 0.933104631218
+Predicting 9
+Test accuracy: 0.931389365352
+0.82332761578
+[[ 286.    0.    0.    0.   39.    0.    1.    0.    8.    0.]
+ [   1.  276.   13.    2.    1.    0.    0.   19.    6.   32.]
+ [   0.   19.  343.    0.    0.    0.    0.    3.    0.    0.]
+ [   0.    3.    1.  328.    0.   11.    0.   11.    0.   26.]
+ [   0.    0.    0.    0.  302.    0.    0.    0.    0.   22.]
+ [   0.   15.    0.    2.    2.  210.    0.    3.    7.   37.]
+ [   0.   40.    1.    0.    6.   31.  323.    0.   12.    2.]
+ [   0.    3.    6.    0.    0.    2.    0.  297.    3.    1.]
+ [  76.    0.    0.    0.    0.   37.   12.    0.  299.    0.]
+ [   0.    8.    0.    4.   14.   44.    0.   31.    1.  216.]]
