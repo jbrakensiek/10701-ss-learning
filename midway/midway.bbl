@@ -6,6 +6,12 @@ E~Alpaydin and Fevzi Alimoglu.
 \newblock Uci pen-based recognition of handwritten digits data set.
 \newblock 1998.
 
+\bibitem[BD{\etalchar{+}}99]{bennett1999semi}
+Kristin Bennett, Ayhan Demiriz, et~al.
+\newblock Semi-supervised support vector machines.
+\newblock {\em Advances in Neural Information processing systems}, pages
+  368--374, 1999.
+
 \bibitem[CCZ06]{chapelle2006continuation}
 Olivier Chapelle, Mingmin Chi, and Alexander Zien.
 \newblock A continuation method for semi-supervised svms.

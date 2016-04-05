@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.5.29)  29 MAR 2016 14:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.5.29)  29 MAR 2016 14:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -204,10 +204,10 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) [2] (./midway.aux) ) 
 Here is how much of TeX's memory you used:
- 2593 strings out of 495020
- 32115 string characters out of 6181324
- 89711 words of memory out of 5000000
- 5799 multiletter control sequences out of 15000+600000
+ 2594 strings out of 495020
+ 32132 string characters out of 6181324
+ 89725 words of memory out of 5000000
+ 5800 multiletter control sequences out of 15000+600000
  15351 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,8n,39p,940b,185s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -220,7 +220,7 @@ lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
 utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on midway.pdf (2 pages, 82584 bytes).
+Output written on midway.pdf (2 pages, 83603 bytes).
 PDF statistics:
  44 PDF objects out of 1000 (max. 8388607)
  31 compressed objects within 1 object stream
