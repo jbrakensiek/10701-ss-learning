@@ -1,0 +1,755 @@
+Predicting 0
+(0.01, 1, 0.0011101960138362708)
+Hit!
+(0.02, 1, 0.0022203920276725416)
+Hit!
+Hit!
+Hit!
+(0.04, 1, 0.004440784055345083)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.08, 1, 0.008881568110690167)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.16, 1, 0.017763136221380333)
+Hit!
+Hit!
+(0.32, 1, 0.035526272442760666)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.64, 1, 0.07105254488552133)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.14210508977104266)
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.28421017954208533)
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.5684203590841707)
+Hit!
+Test error: 0.978559176672
+Predicting 1
+(0.01, 1, 0.0011101960138362708)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.02, 1, 0.0022203920276725416)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.04, 1, 0.004440784055345083)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.08, 1, 0.008881568110690167)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.16, 1, 0.017763136221380333)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.32, 1, 0.035526272442760666)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.64, 1, 0.07105254488552133)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.14210508977104266)
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.28421017954208533)
+Hit!
+Hit!
+(0.8, 1, 0.5684203590841707)
+Test error: 0.951972555746
+Predicting 2
+(0.01, 1, 0.0011101960138362708)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.02, 1, 0.0022203920276725416)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.04, 1, 0.004440784055345083)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.08, 1, 0.008881568110690167)
+Hit!
+Hit!
+(0.16, 1, 0.017763136221380333)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.32, 1, 0.035526272442760666)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.64, 1, 0.07105254488552133)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.14210508977104266)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.28421017954208533)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.5684203590841707)
+Test error: 0.983704974271
+Predicting 3
+(0.01, 1, 0.0011101960138362708)
+Hit!
+(0.02, 1, 0.0022203920276725416)
+Hit!
+Hit!
+(0.04, 1, 0.004440784055345083)
+Hit!
+(0.08, 1, 0.008881568110690167)
+Hit!
+(0.16, 1, 0.017763136221380333)
+(0.32, 1, 0.035526272442760666)
+Hit!
+(0.64, 1, 0.07105254488552133)
+(0.8, 1, 0.14210508977104266)
+(0.8, 1, 0.28421017954208533)
+(0.8, 1, 0.5684203590841707)
+Test error: 0.985420240137
+Predicting 4
+(0.01, 1, 0.0011101960138362708)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.02, 1, 0.0022203920276725416)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.04, 1, 0.004440784055345083)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.08, 1, 0.008881568110690167)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.16, 1, 0.017763136221380333)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.32, 1, 0.035526272442760666)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.64, 1, 0.07105254488552133)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.14210508977104266)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.28421017954208533)
+Hit!
+Hit!
+(0.8, 1, 0.5684203590841707)
+Hit!
+Test error: 0.980274442539
+Predicting 5
+(0.01, 1, 0.0011101960138362708)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.02, 1, 0.0022203920276725416)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.04, 1, 0.004440784055345083)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.08, 1, 0.008881568110690167)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.16, 1, 0.017763136221380333)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.32, 1, 0.035526272442760666)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.64, 1, 0.07105254488552133)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.14210508977104266)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.28421017954208533)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.5684203590841707)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Test error: 0.941395082905
+Predicting 6
+(0.01, 1, 0.0011101960138362708)
+(0.02, 1, 0.0022203920276725416)
+(0.04, 1, 0.004440784055345083)
+(0.08, 1, 0.008881568110690167)
+(0.16, 1, 0.017763136221380333)
+(0.32, 1, 0.035526272442760666)
+(0.64, 1, 0.07105254488552133)
+(0.8, 1, 0.14210508977104266)
+(0.8, 1, 0.28421017954208533)
+(0.8, 1, 0.5684203590841707)
+Test error: 0.991423670669
+Predicting 7
+(0.01, 1, 0.0011101960138362708)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.02, 1, 0.0022203920276725416)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.04, 1, 0.004440784055345083)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.08, 1, 0.008881568110690167)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.16, 1, 0.017763136221380333)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.32, 1, 0.035526272442760666)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.64, 1, 0.07105254488552133)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.14210508977104266)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.28421017954208533)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.5684203590841707)
+Hit!
+Hit!
+Hit!
+Hit!
+Test error: 0.968839336764
+Predicting 8
+(0.01, 1, 0.0011101960138362708)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.02, 1, 0.0022203920276725416)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.04, 1, 0.004440784055345083)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.08, 1, 0.008881568110690167)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.16, 1, 0.017763136221380333)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.32, 1, 0.035526272442760666)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.64, 1, 0.07105254488552133)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.14210508977104266)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.28421017954208533)
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.5684203590841707)
+Hit!
+Hit!
+Test error: 0.960263007433
+Predicting 9
+(0.01, 1, 0.0011101960138362708)
+Hit!
+Hit!
+Hit!
+(0.02, 1, 0.0022203920276725416)
+Hit!
+(0.04, 1, 0.004440784055345083)
+Hit!
+Hit!
+Hit!
+(0.08, 1, 0.008881568110690167)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.16, 1, 0.017763136221380333)
+Hit!
+Hit!
+Hit!
+(0.32, 1, 0.035526272442760666)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.64, 1, 0.07105254488552133)
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.14210508977104266)
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.28421017954208533)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+(0.8, 1, 0.5684203590841707)
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Hit!
+Test error: 0.96598056032
+0.876500857633

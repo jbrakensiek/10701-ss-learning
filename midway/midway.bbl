@@ -6,22 +6,11 @@ E~Alpaydin and Fevzi Alimoglu.
 \newblock Uci pen-based recognition of handwritten digits data set.
 \newblock 1998.
 
-\bibitem[BD{\etalchar{+}}99]{bennett1999semi}
-Kristin Bennett, Ayhan Demiriz, et~al.
-\newblock Semi-supervised support vector machines.
-\newblock {\em Advances in Neural Information processing systems}, pages
-  368--374, 1999.
-
-\bibitem[CCZ06]{chapelle2006continuation}
-Olivier Chapelle, Mingmin Chi, and Alexander Zien.
-\newblock A continuation method for semi-supervised svms.
-\newblock In {\em Proceedings of the 23rd international conference on Machine
-  learning}, pages 185--192. ACM, 2006.
-
-\bibitem[CSK08]{chapelle2008optimization}
-Olivier Chapelle, Vikas Sindhwani, and Sathiya~S Keerthi.
-\newblock Optimization techniques for semi-supervised support vector machines.
-\newblock {\em The Journal of Machine Learning Research}, 9:203--233, 2008.
+\bibitem[Joa99]{Joachims:1999}
+T~Joachims.
+\newblock Transductive inference for text classifcation using support vector
+  machines.
+\newblock 1999.
 
 \bibitem[Lic13]{Lichman:2013}
 M.~Lichman.
@@ -34,16 +23,5 @@ David Llorens, Federico Prat, Andr{\'e}s Marzal, Juan~Miguel Vilar,
 \newblock The ujipenchars database: a pen-based database of isolated
   handwritten characters.
 \newblock In {\em LREC}, 2008.
-
-\bibitem[SK03]{smola2003kernels}
-Alexander~J Smola and Risi Kondor.
-\newblock Kernels and regularization on graphs.
-\newblock In {\em Learning theory and kernel machines}, pages 144--158.
-  Springer, 2003.
-
-\bibitem[Zhu05]{Zhu:2005}
-Xiaojin Zhu.
-\newblock Semi-supervised learning literature survey.
-\newblock 2005.
 
 \end{thebibliography}
