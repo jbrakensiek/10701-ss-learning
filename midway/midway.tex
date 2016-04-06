@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
 \usepackage{nips15submit_e, times}
 
 \title{Midway Report: Semi-Supervised Learning of Pen-Based OCR.}
@@ -156,7 +157,7 @@ We tested the searching algorithm used in \cite{Joachims:1999} on this data set.
 \begin{table}[]
   \centering
   \caption{This table represents the accurancy of our TSVM classification algorithm with 20\% unlabeled. The overall accuracy is 88\%. Each row represents the actual digit which was drawn, and each column represents the label given by our algorithm. For example, there were 4 1's which were incorrectly labeled as 5's.}
-  \label{my-label}
+  \label{my-table}
   \vspace{.3in}
   \begin{tabular}{l|llllllllll}
     & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\\hline
@@ -176,8 +177,15 @@ We tested the searching algorithm used in \cite{Joachims:1999} on this data set.
 Finally, we produced a noticeable relationship between percent of labeled data and classification accuracy \par
 
 [Insert graph of classification accuracy vs percent of labeled data]\par
+\begin{figure}
+  \centering
+  \caption{The following graph plots accuracy of our TSVM classifier based on the fraction of labeled data. We ran the TSVM on 0.5\%, 1\%, 5\%, 10\%, 20\%, and 50\% labeled data. Note that nearly 80\% accuracy was achieved even with 0.5\% labeled data.}
+  \includegraphics[width=5in]{tsvm.pdf}
+\end{figure}
 
 [Insert comments about digits that the TSVM often mistook for another]
+
+As can be seen from Table \ref{my-table}, certain pairs of digits were more likely to be confused by the algorithm. For example, a large number of 8's were classified as 0's and a large number of 5s as 1s. Add more.
 
 \section{Future Plans}
 
