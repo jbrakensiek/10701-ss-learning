@@ -45,7 +45,7 @@ Here, $C$ and $C^*$ are parameters that control the type of fit we get.
 \section{Related Work}
 
 The TSVM algorithm that we implemented requires that in the unlabeled
-data, the number of data points classified is constrained to be
+data, the number of datapoints classified is constrained to be
 exactly equal to some parameter $num_+$. \cite{joachims2003transductive}
 shows that this special kind of TSVM is equivalent to solving
 a $s$-$t$ min cut problem, where the size of the partitions are fixed beforehand, and explores an algorithm called spectral graph transducer,
@@ -92,12 +92,12 @@ One TSVM method we use is an SVM with local search which was first described in 
 \end{align*}
 
 Let's denote an SVM with such an objective function as $SVM(C,C^*_+,C^*_-,T^*)$.
-The user inputs $C$ and $C^*$ defined in (\ref{eq:2}) and two additional parameters: $num_+$, which is the number of $Y^*$ that will be equal to 1, and $\epsilon$ which is a weight to be used later. First, a regular SVM is trained with $X$, $Y$, and $C$, using the objective function of (\ref{eq:1}), and we find the margin distances of $X^*$. We take the $num_+$ most positive margin distances and classify them as 1 in $Y^*$. Then, we initialize two weights, $C^*_- = \epsilon$ and $C^*_+$ such that $\frac{C^*_+}{C^*_-} = \frac{num_+}{n-num_+}$. Then, we call $SVM(C,C^*_+,C^*_-,Y^*)$, and we greedily find two indices $i$ and $j$ such that $y^*_j = -y^*_i$, $\zeta^*_i > 0$ and $\zeta^*_j > 0$ and $\zeta^*_i+\zeta^*_j > 2$, then we know that flipping $y^*_i$ and $y^*_j$ will reduce (\ref{eq:3}) and preserve the number of positive $num_+$ examples. We do this as much as possible, and then set $C^*_+ = \max\{2C^*_+, C^*_+\}$ and $C^*_- = \max\{2C^*_-, C^*_-\}$. This increases the importance of the unlabeled data, because its label accuracy should be increasing. Finally, we call $SVM(C,C^*_+,C^*_-,Y^*)$ again, with the updated values of $C^*_+$, $C^*_-$, and $Y^*$, and repeat until $C^*_- = C^*_+ = C^*$.
+The user inputs $C$ and $C^*$ defined in (\ref{eq:2}) and two additional paremeters: $num_+$, which is the number of $Y^*$ that will be equal to 1, and $\epsilon$ which is a weight to be used later. First, a regular SVM is trained with $X$, $Y$, and $C$, using the objective function of (\ref{eq:1}), and we find the margin distances of $X^*$. We take the $num_+$ most positive margin distances and classify them as 1 in $Y^*$. Then, we initialize two weights, $C^*_- = \epsilon$ and $C^*_+$ such that $\frac{C^*_+}{C^*_-} = \frac{num_+}{n-num_+}$. Then, we call $SVM(C,C^*_+,C^*_-,Y^*)$, and we greedily find two indices $i$ and $j$ such that $y^*_j = -y^*_i$, $\zeta^*_i > 0$ and $\zeta^*_j > 0$ and $\zeta^*_i+\zeta^*_j > 2$, then we know that flipping $y^*_i$ and $y^*_j$ will reduce (\ref{eq:3}) and preserve the number of positive $num_+$ examples. We do this as much as possible, and then set $C^*_+ = \max\{2C^*_+, C^*_+\}$ and $C^*_- = \max\{2C^*_-, C^*_-\}$. This increases the importance of the unlabeled data, because its label accuracy should be increasing. Finally, we call $SVM(C,C^*_+,C^*_-,Y^*)$ again, with the updated values of $C^*_+$, $C^*_-$, and $Y^*$, and repeat until $C^*_- = C^*_+ = C^*$.
 
 \subsection{Spectral Graph Transducer}
 
 Another method we are using is a semi-supervised version of $k$-Nearest Neighbors known as the Spectral Graph Transducer, as described in \cite{joachims2003transductive}. First, a similarity
-graph is constructed where the vertices are the data points (both labeled
+graph is constructed where the vertices are the datapoints (both labeled
 and unlabeled) and have edges weighted by some notion of similarity, like
 distance in a metric space.
 And under the 3 goals of achieving low training error, having the 
@@ -153,25 +153,7 @@ So far, we have exclusively utilized the ``Pen-Based Recognition of Handwritten 
 
 We tested the searching algorithm used in \cite{Joachims:1999} on this data set. We trained 10 different TSVMs, one to distinguish one digit from the rest of the data. To classify a given test point, we found the signed distance from the point to the decision boundary of each TSVM and found the maximum. We tried using three different kernels for our TSVM: linear, Gaussian, and sigmoid. The Gaussian and sigmoid kernels caused our TSVMs to predict all test points as -1, achieving 90\% accuracy. We believe this is because the two kernels can express functions that are too complicated for the noise and high-dimension of this data set. We had more luck with the simple linear kernel, and some results are plotted in the tables below:\par
 
-\begin{table}[]
-  \centering
-  \caption{This table represents the accurancy of our TSVM classification algorithm with 20\% unlabeled. The overall accuracy is 88\%. Each row represents the actual digit which was drawn, and each column represents the label given by our algorithm. For example, there were 4 1's which were incorrectly labeled as 5's.}
-  \label{my-label}
-  \vspace{.3in}
-  \begin{tabular}{l|llllllllll}
-    & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\\hline
-    0 &311 & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 3   & 0   \\
-    1 &1   & 284 & 14  & 3   & 1   & 4   & 0   & 34  & 0   & 31  \\
-    2 & 0   & 14  & 347 & 0   & 0   & 0   & 0   & 2   & 1   & 0   \\
-    3 & 0   & 0   & 0   & 329 & 0   & 18  & 0   & 0   & 0   & 4   \\
-    4 & 1   & 1   & 0   & 1   & 326 & 0   & 0   & 13  & 0   & 1   \\
-    5 & 0   & 61  & 0   & 0   & 19  & 277 & 0   & 6   & 20  & 11  \\
-    6 & 8   & 1   & 0   & 0   & 6   & 3   & 333 & 7   & 0   & 0   \\
-    7 & 0   & 2   & 3   & 2   & 0   & 0   & 0   & 294 & 6   & 2   \\
-    8 & 42  & 0   & 0   & 0   & 0   & 3   & 3   & 6   & 306 & 3   \\
-    9 & 0   & 1   & 0   & 1   & 12  & 30  & 0   & 2   & 0   & 284
-  \end{tabular}
-  \end{table}
+[Insert table with a few of the classification accuracies of the TSVMs]\par
 
 Finally, we produced a noticeable relationship between percent of labeled data and classification accuracy \par
 
@@ -188,7 +170,7 @@ Do feature selection on the data.
 Try different kernels for the TSVM, something more advanced than a linear kernel and not as advanced as a Gaussian kernel. Doing feature selection could help us find a good kernel. Change the algorithm of \cite{Joachims:1999} by not enforcing exactly $num_+$ examples to be classified as +1. Try different values for the parameters in the algorithm.
 Try more methods.
 
-Another line of attack we seek to explore is implementing a semi-supervised deep neural net, perhaps one described by \cite{Lee:2013}. Lee's algorithm consists of a unsupervised phase, a supervised phase, and a semi-supervised phase. The first phase ignores the labels entirely and trains an autoencoder to get a better representation of the data. The second phase uses the labeled data to train the full network using gradient descent and dropout. For the final phase, Lee uses the method of \emph{pseudo-labels} to utilize more fully the unlabeled data. In this method, during each round of gradient descent, the neural net is trained on both kinds of data. The labeled data is treated as normally. For the unlabeled data, a classification is chosen based on most most highly activated output unit for the unlabeled data point, and the accuracy of the neural network on that data point is measured from the classification.
+Another line of attack we seek to explore is implementing a semi-supervised deep neural net, perhaps one described by \cite{Lee:2013}. Lee's algorithm consists of a unsupervised phase, a supervised phase, and a semi-supervised phase. The first phase ignores the labels entirely and trains an autoencoder to get a better representation of the data. The second phase uses the labeled data to train the full network using gradient descent and dropout. For the final phase, Lee uses the method of \emph{pseudo-labels} to utilize more fully the unlabeled data. In this method, during each round of gradient descent, the neural net is trained on both kinds of data. The labeled data is treated as normally. For the unlabled data, a classification is chosen based on most most highly activated output unit for the unlabeled data point, and the accuracy of the neural network on that data point is measured from the classification.
 
 \bibliographystyle{alpha}
 \bibliography{midway}
