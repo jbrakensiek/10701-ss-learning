@@ -3,6 +3,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{nips15submit_e, times}
+\usepackage[T1]{fontenc}
 
 \title{Midway Report: Semi-Supervised Learning of Pen-Based OCR.}
 \author{Joshua Brakensiek, Jacob Imola, Sidhanth Mohanty}
@@ -96,7 +97,6 @@ Let's denote an SVM with such an objective function as $SVM(C,C^*_+,C^*_-,T^*)$.
 The user inputs $C$ and $C^*$ defined in (\ref{eq:2}) and two additional parameters: $num_+$, which is the number of $Y^*$ that will be equal to 1, and $\epsilon$ which is a weight to be used later. First, a regular SVM is trained with $X$, $Y$, and $C$, using the objective function of (\ref{eq:1}), and we find the margin distances of $X^*$. We take the $num_+$ most positive margin distances and classify them as 1 in $Y^*$. Then, we initialize two weights, $C^*_- = \epsilon$ and $C^*_+$ such that $\frac{C^*_+}{C^*_-} = \frac{num_+}{n-num_+}$. Then, we call $SVM(C,C^*_+,C^*_-,Y^*)$, and we greedily find two indices $i$ and $j$ such that $y^*_j = -y^*_i$, $\zeta^*_i > 0$ and $\zeta^*_j > 0$ and $\zeta^*_i+\zeta^*_j > 2$, then we know that flipping $y^*_i$ and $y^*_j$ will reduce (\ref{eq:3}) and preserve the number of positive $num_+$ examples. We do this as much as possible, and then set $C^*_+ = \max\{2C^*_+, C^*_+\}$ and $C^*_- = \max\{2C^*_-, C^*_-\}$. This increases the importance of the unlabeled data, because its label accuracy should be increasing. Finally, we call $SVM(C,C^*_+,C^*_-,Y^*)$ again, with the updated values of $C^*_+$, $C^*_-$, and $Y^*$, and repeat until $C^*_- = C^*_+ = C^*$.
 
 \subsection{Spectral Graph Transducer}
-
 Another method we are using is a semi-supervised version of $k$-Nearest Neighbors known as the Spectral Graph Transducer, as described in \cite{joachims2003transductive}. First, a similarity
 graph is constructed where the vertices are the data points (both labeled
 and unlabeled) and have edges weighted by some notion of similarity, like
@@ -156,7 +156,7 @@ We tested the searching algorithm used in \cite{Joachims:1999} on this data set.
 
 \begin{table}[]
   \centering
-  \caption{This table represents the accurancy of our TSVM classification algorithm with 20\% unlabeled. The overall accuracy is 88\%. Each row represents the actual digit which was drawn, and each column represents the label given by our algorithm. For example, there were 4 1's which were incorrectly labeled as 5's.}
+  \caption{This table represents the accurancy of our TSVM classification algorithm with 20\% unlabeled. The overall accuracy is 88\%. Each column represents the actual digit which was drawn, and each row represents the label given by our algorithm. For example, there were 4 1's which were incorrectly labeled as 5's.}
   \label{my-table}
   \vspace{.3in}
   \begin{tabular}{l|llllllllll}
@@ -176,16 +176,17 @@ We tested the searching algorithm used in \cite{Joachims:1999} on this data set.
 
 Finally, we produced a noticeable relationship between percent of labeled data and classification accuracy \par
 
-[Insert graph of classification accuracy vs percent of labeled data]\par
+%[Insert graph of classification accuracy vs percent of labeled data]\par
 \begin{figure}
   \centering
   \caption{The following graph plots accuracy of our TSVM classifier based on the fraction of labeled data. We ran the TSVM on 0.5\%, 1\%, 5\%, 10\%, 20\%, and 50\% labeled data. Note that nearly 80\% accuracy was achieved even with 0.5\% labeled data.}
   \includegraphics[width=5in]{tsvm.pdf}
 \end{figure}
 
-[Insert comments about digits that the TSVM often mistook for another]
+%[Insert comments about digits that the TSVM often mistook for another]
 
-As can be seen from Table \ref{my-table}, certain pairs of digits were more likely to be confused by the algorithm. For example, a large number of 8's were classified as 0's and a large number of 5s as 1s. Add more.
+As can be seen from Table \ref{my-table}, certain pairs of digits were more likely to be confused by the algorithm. For example, a large number of 0's were classified as 8's and a large number of 1's as 5's, and a fair number of 9's as 1's. A likely explanation for why
+some of the 0's were misclassified as 8 is that some instances of 0 were written with a slash through (like `$\emptyset$' as opposed to `0').
 
 \section{Future Plans}
 
