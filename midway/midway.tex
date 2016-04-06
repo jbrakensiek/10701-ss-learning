@@ -150,13 +150,13 @@ in \cite{joachims2003transductive}.
 
 \section{Data, Experiments, and Results}
 
-So far, we have exclusively utilized the ``Pen-Based Recognition of Handwritten Digits Data Set'' from \cite{Alpaydin:1998}. The data presented is a normalized time series of a user drawing a digit. Specifically, each input consisted of eight points in $[0, 100]^2$, representing the location of the pen at each step of drawing the digit. Often the originally collected data by the designers had more steps, but the data set was normalized to achieve uniformity of data while still preserving accuracy. The classifier $h$ we seek to train consists is thus a function from $[0, 100]^{16} \to \{0, 1, \hdots, 9\}$. 
+So far, we have exclusively utilized the ``Pen-Based Recognition of Handwritten Digits Data Set'' from \cite{Alpaydin:1998}. The data presented is a normalized time series of a user drawing a digit. Specifically, each input consisted of eight points in $[0, 100]^2$, representing the location of the pen at each step of drawing the digit. Often the originally collected data by the designers had more steps, but the data set was normalized to achieve uniformity of data while still preserving accuracy. The classifier $h$ we seek to train consists is thus a function from $[0, 100]^{16} \to \{0, 1, \hdots, 9\}$.  As the goal of this project is semisupervised learning, we partitioned the data into three groups, labeled training data, unlabeled training data, and testing data. The data was already pre-divided into training and testing batches. We used random sampling to make some fraction of the data unlabeled. Our tests would use 0.5\%, 1\%, 5\%, 10\%, 20\%, and 50\% labeled data to understand the impact of more labeled data on our methods.
 
-We tested the searching algorithm used in \cite{Joachims:1999} on this data set. We trained 10 different TSVMs, one to distinguish one digit from the rest of the data. To classify a given test point, we found the signed distance from the point to the decision boundary of each TSVM and found the maximum. We tried using three different kernels for our TSVM: linear, Gaussian, and sigmoid. The Gaussian and sigmoid kernels caused our TSVMs to predict all test points as -1, achieving 90\% accuracy. We believe this is because the two kernels can express functions that are too complicated for the noise and high-dimension of this data set. We had more luck with the simple linear kernel, and some results are plotted in the tables below:\par
+We tested the searching algorithm used in \cite{Joachims:1999} on this data set. We trained 10 different TSVMs, one to distinguish one digit from the rest of the data. To classify a given test point, we found the signed distance from the point to the decision boundary of each TSVM and found the maximum. We tried using three different kernels for our TSVM: linear, Gaussian, and sigmoid. The Gaussian and sigmoid kernels caused our TSVMs to predict all test points as -1, achieving 90\% accuracy. We believe this is because the two kernels can express functions that are too complicated for the noise and high-dimension of this data set. Our results proved better with the simple linear kernel, and some results are plotted in the tables below:\par
 
 \begin{table}[]
   \centering
-  \caption{This table represents the accurancy of our TSVM classification algorithm with 20\% unlabeled. The overall accuracy is 88\%. Each row represents the actual digit which was drawn, and each column represents the label given by our algorithm. For example, there were 4 1's which were incorrectly labeled as 5's.}
+  \caption{This table represents the accurancy of our TSVM classification algorithm with 20\% labeled data. The overall accuracy is 88\%. Each row represents the actual digit which was drawn, and each column represents the label given by our algorithm. For example, there were 4 1's which were incorrectly labeled as 5's.}
   \label{my-table}
   \vspace{.3in}
   \begin{tabular}{l|llllllllll}
@@ -189,12 +189,13 @@ As can be seen from Table \ref{my-table}, certain pairs of digits were more like
 
 \section{Future Plans}
 
-We plan to test the Spectral Graph Transducer algorithm described in
-section 3.2.
+We plan to test the Spectral Graph Transducer algorithm described in section 3.2.
 
-Do feature selection on the data. 
-Try different kernels for the TSVM, something more advanced than a linear kernel and not as advanced as a Gaussian kernel. Doing feature selection could help us find a good kernel. Change the algorithm of \cite{Joachims:1999} by not enforcing exactly $num_+$ examples to be classified as +1. Try different values for the parameters in the algorithm.
-Try more methods.
+We also have not yet incorporated the data from \cite{Llorens:2008}. We may end up deciding to not incoporate this data at all, since the data is in a different format and it has more symbols such as Latin letters and Unicode characters and there are fewer samples per character.
+
+One thing that has not been explored is trying different representations of our feature space (besides kernels). For example, instead of representing the individual points in $\mathbb R^2$, we replace the data with 
+
+Try different kernels for the TSVM, something more advanced than a linear kernel and not as advanced as a Gaussian kernel. Doing feature selection could help us find a good kernel. For example, we could change the algorithm of \cite{Joachims:1999} by not enforcing exactly $num_+$ examples to be classified as +1. Another appraoch would be to use the Graph kernel methods of \cite{smola2003kernels}. We would also like to try different values for the parameters in the algorithm.
 
 Another line of attack we seek to explore is implementing a semi-supervised deep neural net, perhaps one described by \cite{Lee:2013}. Lee's algorithm consists of a unsupervised phase, a supervised phase, and a semi-supervised phase. The first phase ignores the labels entirely and trains an autoencoder to get a better representation of the data. The second phase uses the labeled data to train the full network using gradient descent and dropout. For the final phase, Lee uses the method of \emph{pseudo-labels} to utilize more fully the unlabeled data. In this method, during each round of gradient descent, the neural net is trained on both kinds of data. The labeled data is treated as normally. For the unlabeled data, a classification is chosen based on most most highly activated output unit for the unlabeled data point, and the accuracy of the neural network on that data point is measured from the classification.
 
