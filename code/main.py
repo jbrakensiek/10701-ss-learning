@@ -1,5 +1,7 @@
 import parser, tsvm_sgt, tsvm
 import numpy as np
+import sys
+
 def predict_digit(digit, X_train, Y_train, X_unlab, X_test, Y_test):
     print("Predicting "+ str(digit))
     for i in range(0, len(Y_train)):
@@ -18,9 +20,12 @@ def predict_digit(digit, X_train, Y_train, X_unlab, X_test, Y_test):
     print("Test accuracy: " + str(T.score(X_test, Y_test)))
     return T.decision_function(X_test)
 
+
+percent_lab = float(sys.argv[1])
+
 #def main():
 pen = parser.PenParser()
-X_train, Y_train, X_unlab, X_test, Y_test = pen.retrieve_pendigits_data(0.40)
+X_train, Y_train, X_unlab, X_test, Y_test = pen.retrieve_pendigits_data(percent_lab)
 c = tsvm_sgt.tsvm(X_train, Y_train, X_unlab)
 boundaries = []
 for dig in range(0, 10):
