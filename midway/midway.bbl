@@ -39,6 +39,13 @@ Thorsten Joachims.
 \newblock Making large scale svm learning practical.
 \newblock Technical report, Universit{\"a}t Dortmund, 1999.
 
+\bibitem[Lee13]{Lee:2013}
+Dong-Hyun Lee.
+\newblock Pseudo-label: The simple and efficient semi-supervised learning
+  method for deep neural networks.
+\newblock In {\em Workshop on Challenges in Representation Learning, ICML},
+  volume~3, 2013.
+
 \bibitem[Lic13]{Lichman:2013}
 M.~Lichman.
 \newblock {UCI} machine learning repository, 2013.

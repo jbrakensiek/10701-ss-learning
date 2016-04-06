@@ -1,67 +1,53 @@
-<<<<<<< HEAD
 This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
-=======
-This is BibTeX, Version 0.99d (TeX Live 2015)
->>>>>>> 0fb900d537e7afa477e8078cb86ddd235e241127
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: midway.aux
 The style file: alpha.bst
 Database file #1: midway.bib
-I was expecting a `,' or a `}'---line 48 of file midway.bib
- :   
- :   url = "https://archive.ics.uci.edu/ml/datasets/UJI+Pen+Characters+\%28Version+2\%29"
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 101 of file midway.bib
- :   
- :   url="https://archive.ics.uci.edu/ml/datasets/Pen-Based+Recognition+of+Handwritten+Digits"
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Warning--empty journal in Alpaydin:1998
 Warning--empty booktitle in belkin2005manifold
 Warning--empty year in belkin2005manifold
 Warning--empty booktitle in joachims2003transductive
 Warning--empty year in joachims2003transductive
 Warning--empty journal in Joachims:1999
-You've used 9 entries,
+You've used 10 entries,
             2543 wiz_defined-function locations,
-            603 strings with 5972 characters,
-and the built_in function-call counts, 3482 in all, are:
-= -- 329
-> -- 179
-< -- 6
-+ -- 62
-- -- 60
-* -- 221
-:= -- 574
-add.period$ -- 26
-call.type$ -- 9
-change.case$ -- 59
-chr.to.int$ -- 8
-cite$ -- 15
-duplicate$ -- 150
-empty$ -- 259
-format.name$ -- 71
-if$ -- 715
+            608 strings with 6152 characters,
+and the built_in function-call counts, 3788 in all, are:
+= -- 356
+> -- 187
+< -- 8
++ -- 64
+- -- 62
+* -- 238
+:= -- 621
+add.period$ -- 29
+call.type$ -- 10
+change.case$ -- 64
+chr.to.int$ -- 9
+cite$ -- 16
+duplicate$ -- 168
+empty$ -- 290
+format.name$ -- 75
+if$ -- 780
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 7
-newline$ -- 46
-num.names$ -- 27
-pop$ -- 89
+missing$ -- 8
+newline$ -- 51
+num.names$ -- 30
+pop$ -- 97
 preamble$ -- 1
-purify$ -- 67
+purify$ -- 73
 quote$ -- 0
-skip$ -- 119
+skip$ -- 131
 stack$ -- 0
-substring$ -- 123
-swap$ -- 25
-text.length$ -- 6
-text.prefix$ -- 4
+substring$ -- 130
+swap$ -- 28
+text.length$ -- 8
+text.prefix$ -- 5
 top$ -- 0
-type$ -- 72
+type$ -- 80
 warning$ -- 6
-while$ -- 29
-width$ -- 10
-write$ -- 106
-(There were 2 error messages)
+while$ -- 31
+width$ -- 11
+write$ -- 119
+(There were 6 warnings)
