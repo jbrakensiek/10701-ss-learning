@@ -58,4 +58,10 @@ David Llorens, Federico Prat, Andr{\'e}s Marzal, Juan~Miguel Vilar,
   handwritten characters.
 \newblock In {\em LREC}, 2008.
 
+\bibitem[SK03]{smola2003kernels}
+Alexander~J Smola and Risi Kondor.
+\newblock Kernels and regularization on graphs.
+\newblock In {\em Learning theory and kernel machines}, pages 144--158.
+  Springer, 2003.
+
 \end{thebibliography}
