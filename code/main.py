@@ -20,7 +20,7 @@ def predict_digit(digit, X_train, Y_train, X_unlab, X_test, Y_test):
 
 #def main():
 pen = parser.PenParser()
-X_train, Y_train, X_unlab, X_test, Y_test = pen.retrieve_pendigits_data(0.50)
+X_train, Y_train, X_unlab, X_test, Y_test = pen.retrieve_pendigits_data(0.40)
 c = tsvm_sgt.tsvm(X_train, Y_train, X_unlab)
 boundaries = []
 for dig in range(0, 10):
