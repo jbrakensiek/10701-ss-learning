@@ -12,9 +12,10 @@ Avrim Blum and Tom Mitchell.
 \newblock In {\em Proceedings of the eleventh annual conference on
   Computational learning theory}, pages 92--100. ACM, 1998.
 
-\bibitem[BNS]{belkin2005manifold}
-Misha Belkin, Partha Niyogi, and Vikas Sindhwani.
+\bibitem[BNS05]{belkin2005manifold}
+Misha Belkin, Partha Niyogi, and Vikasy Sindhwani.
 \newblock On manifold regularization.
+\newblock In {\em AISTATS}, 2005.
 
 \bibitem[Dhi01]{dhillon2001co}
 Inderjit~S Dhillon.
@@ -24,15 +25,16 @@ Inderjit~S Dhillon.
   conference on Knowledge discovery and data mining}, pages 269--274. ACM,
   2001.
 
-\bibitem[J{\etalchar{+}}]{joachims2003transductive}
+\bibitem[J{\etalchar{+}}03]{joachims2003transductive}
 Thorsten Joachims et~al.
 \newblock Transductive learning via spectral graph partitioning.
+\newblock In {\em ICML}, 2003.
 
 \bibitem[Joa99a]{Joachims:1999}
 T~Joachims.
 \newblock Transductive inference for text classifcation using support vector
   machines.
-\newblock 1999.
+\newblock In {\em ICML}, pages 200--209, 1999.
 
 \bibitem[Joa99b]{joachims1999making}
 Thorsten Joachims.
