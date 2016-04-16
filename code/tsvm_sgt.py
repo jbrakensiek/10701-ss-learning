@@ -48,24 +48,28 @@ class tsvm:
     ''' This function generates the normalized Laplacian matrix of the
         similarity graph.
     '''
-    def generateGraph():
-        self.laplacian = np.matrix(np.zeros([self.numtotal, self.numtotal]))
+    def generateGraph(self):
+        self.laplacian = np.zeros([self.numtotal, self.numtotal])
         #find a faster way to do the following with numpy functions
         for i in range(self.numtotal):
             ithvec = self.totaldata[i]
             sum_ithrow = 0
+            if (i % 300 == 0):
+                print "antiboredom device", i
             for j in range(i):
                 jthvec = self.totaldata[j]
                 distancevec = ithvec - jthvec
                 self.laplacian[i][j] = -1 * math.exp(-1 * np.dot(distancevec,\
                     distancevec))
                 self.laplacian[j][i] = self.laplacian[i][j]
-                sum_ithrow += laplacian[i][j]
+                sum_ithrow += self.laplacian[i][j]
             self.laplacian[i] /= sum_ithrow
             self.laplacian[i][i] = 1
 
-    def spectralgraphtransducer():
-        generateGraph()
+    def spectralgraphtransducer(self):
+        self.generateGraph()
+
+        print "checkpoint", 0
 
         #using eigh over eig because it is optimized to work on symmetric
         #matrices
@@ -74,13 +78,17 @@ class tsvm:
         #some eigenvectors/eigenvalues should potentially be discarded
         #figure out which ones!
 
+        print "checkpoint", 1
+
         laplace_eigvec = laplace_eigvec.T
         #code to sort two arrays together taken from stackoverflow
         indexes = range(len(laplace_eigval))
         indexes.sort(key = laplace_eigval.__getitem__)
         sorted_laplace_eigval = map(laplace_eigval.__getitem__, indexes)
         sorted_laplace_eigvec = map(laplace_eigvec.__getitem__, indexes)
-        sorted_laplace_eigvec = sorted_laplace_eigvec.T
+        sorted_laplace_eigvec = np.array(sorted_laplace_eigvec).T
+
+        print "checkpoint", 2
 
         #don't have intuition for the following loop. Included it here because
         #the paper suggested it.
@@ -89,6 +97,8 @@ class tsvm:
             sorted_laplace_eigval[i] = (i + 1) * (i + 1)
         #the next line because np.sum is faster than any for loop
         sumlabels = np.sum(self.labels)
+
+        print "checkpoint", 3
 
         #length(outputvec) - this number is always even
         numpositive = ((numpoints + sumlabels) / 2)
@@ -99,12 +109,16 @@ class tsvm:
         gammaplus = sqrt(float(numnegative)/float(numpositive))
         gammaminus = -1 * sqrt(float(numpositive)/float(numnegative))
 
+        print "checkpoint", 4
+
         gammavec = np.zeros(self.numtotal)
         for i in range(self.numpoints):
             if (self.labels[i] == 1):
                 gammavec[i] = gammaplus
             else:
                 gammavec[i] = gammaminus
+
+        print "checkpoint", 5
 
         #more stuff to put here
         costsynthesis = np.zeros(self.numtotal)
@@ -114,6 +128,8 @@ class tsvm:
             else:
                 costsynthesis[i] = float(numpoints) / (2.0 * float(numnegative))
         costsynthesis = np.diag(costsynthesis) #this is the 'C' in the paper.
+
+        print "checkpoint", 6
 
         eigvalmat = np.diag(sorted_laplace_eigval)
         tradeoff_param = 1 #I set it to 1 arbitrarily, tuning is necessary for
@@ -160,3 +176,4 @@ class tsvm:
 
         predictions = map(lambda x: -1 if x < threshold else 1,\
             predictionhelper)
+        return predictions
