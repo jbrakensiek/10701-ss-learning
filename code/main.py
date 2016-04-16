@@ -80,15 +80,17 @@ if (which_classifier == 1):
 
 else:
     boundaries = []
-    digitclass1 = {2,3,4,5,7}
-    digitclass2 = {2,7,8,9,0}
-    digitclass3 = {2,5,6,7,8}
-    digitclass4 = {1,3,5,7,8}
-    digitclass5 = {3,4,5,7,0}
+    digitclass1 = {8,9}
+    digitclass2 = {4,5,6,7,8,9}
+    digitclass3 = {2,3,6,7,8}
+    digitclass4 = {1,3,5,7,8,9}
+    digitclass5 = {1,2,4,7,8}
+    digitclass6 = {1,2,5,6,8}
+    digitclass7 = {1,3,4,6,8,9}
     digitclasses = [digitclass1, digitclass2, digitclass3, digitclass4,\
-        digitclass5]
+        digitclass5, digitclass6, digitclass7]
     #try something like codewords of Hamming codes for digitclasses?
-    for i in range(0, 5):
+    for i in range(0, 7):
         raw_preds = predict_digit_2\
             (digitclasses[i], X_train, np.matrix.copy(Y_train), X_unlab,\
              X_test, np.matrix.copy(Y_test))
@@ -101,7 +103,7 @@ else:
         best_pred = -1
         for dig in range(0, 10):
             hamming_dist = 0
-            for j in range(0, 5):
+            for j in range(0, 7):
                 if ((boundaries[j][i] == 1 and (dig not in digitclasses[j]))\
                     or (boundaries[j][i] == -1 and (dig in digitclasses[j]))):
                     hamming_dist += 1
