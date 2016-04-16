@@ -97,8 +97,8 @@ else:
         for dig in range(0, 10):
             hamming_dist = 0
             for j in range(0, 4):
-                if ((boundaries[j][i] == 1 and (dig not in digitclasses[i]))\
-                    or (boundaries[j][i] == -1 and (dig in digitclasses[i]))):
+                if ((boundaries[j][i] == 1 and (dig not in digitclasses[j]))\
+                    or (boundaries[j][i] == -1 and (dig in digitclasses[j]))):
                     hamming_dist += 1
             if (hamming_dist < hamming_best):
                 best_pred = dig
