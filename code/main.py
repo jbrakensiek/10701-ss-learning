@@ -22,18 +22,21 @@ def predict_digit(digit, X_train, Y_train, X_unlab, X_test, Y_test):
 
 def predict_digit_2(digitclass, X_train, Y_train, X_unlab, X_test, Y_test):
     print("Predicting a class")
+    countpos = 0
     for i in range(0, len(Y_train)):
         if (Y_train[i] not in digitclass):
             Y_train[i] = -1
         else:
             Y_train[i] = 1
+            countpos += 1
     for i in range(0, len(Y_test)):
         if (Y_test[i] not in digitclass):
             Y_test[i] = -1
         else:
             Y_test[i] = 1
+    unlabeled_true_coeff = float(countpos) / float(len(Y_train))
     T = tsvm.TSVM(X_train, Y_train, X_unlab)
-    frac = int(0.1 * len(X_unlab))
+    frac = int(unlabeled_true_coeff * len(X_unlab))
     print("reaches here")
     T.learn(1, 0.9, frac, 10**-2)
     print("Test accuracy: " + str(T.score(X_test, Y_test)))
@@ -77,13 +80,15 @@ if (which_classifier == 1):
 
 else:
     boundaries = []
-    digitclass1 = {1,2,3,4,5,8}
-    digitclass2 = {1,2,8,9,0}
-    digitclass3 = {1,2,5,6,9}
-    digitclass4 = {1,3,5,7,9}
-    digitclasses = [digitclass1, digitclass2, digitclass3, digitclass4]
+    digitclass1 = {2,3,4,5,7}
+    digitclass2 = {2,7,8,9,0}
+    digitclass3 = {2,5,6,7,8}
+    digitclass4 = {1,3,5,7,8}
+    digitclass5 = {3,4,5,7,0}
+    digitclasses = [digitclass1, digitclass2, digitclass3, digitclass4,\
+        digitclass5]
     #try something like codewords of Hamming codes for digitclasses?
-    for i in range(0, 4):
+    for i in range(0, 5):
         raw_preds = predict_digit_2\
             (digitclasses[i], X_train, np.matrix.copy(Y_train), X_unlab,\
              X_test, np.matrix.copy(Y_test))
@@ -92,11 +97,11 @@ else:
 
     predictions = []
     for i in range(0, len(Y_test)):
-        hamming_best = 4
+        hamming_best = 5
         best_pred = -1
         for dig in range(0, 10):
             hamming_dist = 0
-            for j in range(0, 4):
+            for j in range(0, 5):
                 if ((boundaries[j][i] == 1 and (dig not in digitclasses[j]))\
                     or (boundaries[j][i] == -1 and (dig in digitclasses[j]))):
                     hamming_dist += 1
@@ -104,13 +109,17 @@ else:
                 best_pred = dig
                 hamming_best = hamming_dist
         predictions.append(best_pred)
-    
+    print predictions 
+    print Y_test
     correct = 0
     for i in range(0, len(Y_test)):
         if (Y_test[i] == predictions[i]):
             correct += 1
-
     print(float(correct) / float(len(Y_test)))
+    confusion_matrix = np.zeros((10,10))
+    for a in range(0, len(predictions)):
+        confusion_matrix[int(predictions[a])][int(Y_test[a])] += 1
+    print confusion_matrix
 
 """
 if __name__ == "__main__":
