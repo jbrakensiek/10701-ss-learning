@@ -81,12 +81,12 @@ if (which_classifier == 1):
 else:
     boundaries = []
     digitclass1 = {8,9}
-    digitclass2 = {4,5,6,7,8,9}
-    digitclass3 = {2,3,6,7,8}
-    digitclass4 = {1,3,5,7,8,9}
-    digitclass5 = {1,2,4,7,8}
+    digitclass2 = {4,5,6,7}
+    digitclass3 = {2,3,6,7}
+    digitclass4 = {1,3,5,7,9}
+    digitclass5 = {1,2,4,7,9}
     digitclass6 = {1,2,5,6,8}
-    digitclass7 = {1,3,4,6,8,9}
+    digitclass7 = {1,3,4,6,8}
     digitclasses = [digitclass1, digitclass2, digitclass3, digitclass4,\
         digitclass5, digitclass6, digitclass7]
     #try something like codewords of Hamming codes for digitclasses?
@@ -94,22 +94,30 @@ else:
         raw_preds = predict_digit_2\
             (digitclasses[i], X_train, np.matrix.copy(Y_train), X_unlab,\
              X_test, np.matrix.copy(Y_test))
-        toAdd = map(lambda x: 1 if (x > 0) else -1, raw_preds)
-        boundaries.append(toAdd)
+        #toAdd = map(lambda x: 1 if (x > 0) else -1, raw_preds)
+        boundaries.append(raw_preds)
 
     predictions = []
     for i in range(0, len(Y_test)):
-        hamming_best = 5
+        hamming_best = 7
         best_pred = -1
+        helper_best = 100000
         for dig in range(0, 10):
             hamming_dist = 0
+            helper_dist = 0
             for j in range(0, 7):
-                if ((boundaries[j][i] == 1 and (dig not in digitclasses[j]))\
-                    or (boundaries[j][i] == -1 and (dig in digitclasses[j]))):
+                if ((boundaries[j][i] > 0 and (dig not in digitclasses[j]))\
+                    or (boundaries[j][i] <= 0 and (dig in digitclasses[j]))):
+                    helper_dist += abs(boundaries[j][i] - 2 * (dig in\
+                        digitclasses[j]) + 1)
                     hamming_dist += 1
             if (hamming_dist < hamming_best):
                 best_pred = dig
                 hamming_best = hamming_dist
+                helper_best = helper_dist
+            elif (hamming_dist == hamming_best):
+                if (helper_dist < helper_best):
+                    best_pred = dig
         predictions.append(best_pred)
     print predictions 
     print Y_test
