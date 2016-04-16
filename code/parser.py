@@ -25,7 +25,7 @@ class PenParser:
         lines = np.random.permutation(lines)
 
         for i in range(len(lines)):
-            data[i,] = map(float, lines[i][:-1])
+            data[i,] = map(lambda x: float(x)/100.0, lines[i][:-1])
             answers[i] = int(lines[i][-1])
 
         return data, answers
