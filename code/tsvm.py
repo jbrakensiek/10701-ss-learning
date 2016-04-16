@@ -49,7 +49,7 @@ class TSVM:
                 u_weights.append(C_sn)
         while(C_sn < C_s or C_sp < C_s):
             #fit the unlabeled data with their labels
-            #print(C_sn, C, C_sp)
+            print(C_sn, C, C_sp)
             self.clf.fit(np.concatenate((self.x_train, self.x_unlabeled), axis=0),\
                     np.concatenate((self.y_train, self.y_unlabeled), axis=0),\
                     sample_weight = np.concatenate((weights, u_weights), axis=0))
@@ -82,7 +82,7 @@ class TSVM:
                     neg_idx+=1
                 if(neg_idx == len(zeta_neg)):
                     break
-                #print("Hit!")
+                print("Hit!")
                 #We have a match. Flip the labels
                 self.y_unlabeled[zeta_pos[x][1]] = -1
                 self.y_unlabeled[zeta_neg[neg_idx][1]] = 1
