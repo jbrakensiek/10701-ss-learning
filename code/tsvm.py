@@ -16,7 +16,7 @@ class TSVM:
         self.x_unlabeled = x_u
         #We initialize to all -1s at first
         self.y_unlabeled = [-1 for z in range(0, len(self.x_unlabeled))] 
-        self.clf = svm.SVC(kernel="poly", degree=4, coef0=3)
+        self.clf = svm.SVC(kernel="poly", degree=5, coef0=3)
     """ 
     The TSVM algorithm.
     C is the weight we should give to the labeled data's slacks variables.
