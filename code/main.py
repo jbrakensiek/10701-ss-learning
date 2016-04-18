@@ -1,6 +1,7 @@
 import parser, tsvm_sgt, tsvm
 import numpy as np
 import sys
+import random
 
 def predict_digit(digit, X_train, Y_train, X_unlab, X_test, Y_test):
     print("Predicting "+ str(digit))
@@ -39,8 +40,9 @@ def predict_digit_2(digitclass, X_train, Y_train, X_unlab, X_test, Y_test):
     frac = int(unlabeled_true_coeff * len(X_unlab))
     print("reaches here")
     T.learn(1, 0.9, frac, 10**-2)
-    print("Test accuracy: " + str(T.score(X_test, Y_test)))
-    return T.decision_function(X_test)
+    score = T.score(X_test, Y_test)
+    print("Test accuracy: " + str(score))
+    return (score, T.decision_function(X_test))
 
 percent_lab = float(sys.argv[1])
 which_classifier = int(sys.argv[2])
@@ -87,10 +89,21 @@ else:
     digitclass5 = {1,2,4,7,9}
     digitclass6 = {1,2,5,6,8}
     digitclass7 = {1,3,4,6,8}
+    '''
+    for i in range(0, 10):
+        for j in range(0, i):
+            digitclasses.append({i, j})
+    
+    for i in range(10):
+        #if (i != 1 or i != 2):
+        #    digitclasses.append({1, i})
+        #    digitclasses.append({2, i})
+        digitclasses.append({i})
+    '''
     digitclasses = [digitclass1, digitclass2, digitclass3, digitclass4,\
         digitclass5, digitclass6, digitclass7]
     #try something like codewords of Hamming codes for digitclasses?
-    for i in range(0, 7):
+    for i in range(0, len(digitclasses)):
         raw_preds = predict_digit_2\
             (digitclasses[i], X_train, np.matrix.copy(Y_train), X_unlab,\
              X_test, np.matrix.copy(Y_test))
@@ -105,13 +118,17 @@ else:
         for dig in range(0, 10):
             hamming_dist = 0
             helper_dist = 0
-            for j in range(0, 7):
-                if ((boundaries[j][i] > 0 and (dig not in digitclasses[j]))\
-                    or (boundaries[j][i] <= 0 and (dig in digitclasses[j]))):
-                    helper_dist += abs(boundaries[j][i] - 2 * (dig in\
-                        digitclasses[j]) + 1)
-                    hamming_dist += 1
-            if (hamming_dist < hamming_best):
+            for j in range(0, len(digitclasses) - 1):
+                if ((boundaries[j][1][i] > 0 and (dig not in digitclasses[j]))\
+                    or (boundaries[j][1][i] <= 0 and (dig in digitclasses[j]))):
+                    helper_dist += boundaries[j][0] *\
+                        abs(boundaries[j][1][i] - (2 * (dig in\
+                            digitclasses[j]) - 1) * boundaries[j][1][i])
+                    hamming_dist += boundaries[j][0]
+                #if (j >= len(digitclasses) - 2):
+                #    if (i == 1 or i == 2):
+                        
+            if (helper_dist < helper_best):
                 best_pred = dig
                 hamming_best = hamming_dist
                 helper_best = helper_dist
@@ -119,8 +136,6 @@ else:
                 if (helper_dist < helper_best):
                     best_pred = dig
         predictions.append(best_pred)
-    print predictions 
-    print Y_test
     correct = 0
     for i in range(0, len(Y_test)):
         if (Y_test[i] == predictions[i]):

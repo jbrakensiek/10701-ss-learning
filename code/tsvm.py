@@ -16,7 +16,7 @@ class TSVM:
         self.x_unlabeled = x_u
         #We initialize to all -1s at first
         self.y_unlabeled = [-1 for z in range(0, len(self.x_unlabeled))] 
-        self.clf = svm.SVC(kernel="linear")
+        self.clf = svm.SVC(kernel="poly", degree=4, coef0=3)
     """ 
     The TSVM algorithm.
     C is the weight we should give to the labeled data's slacks variables.
@@ -82,7 +82,6 @@ class TSVM:
                     neg_idx+=1
                 if(neg_idx == len(zeta_neg)):
                     break
-                print("Hit!")
                 #We have a match. Flip the labels
                 self.y_unlabeled[zeta_pos[x][1]] = -1
                 self.y_unlabeled[zeta_neg[neg_idx][1]] = 1
