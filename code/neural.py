@@ -1,4 +1,5 @@
 import math
+import pickle
 from random import random
 import parser
 import sys
@@ -42,12 +43,14 @@ class NeuralNet:
     Based on 'Pseudo Label' Dong-Hyun Lee
     '''
     
-    def __init__(self, nI, nB, nO, eta):
+    def __init__(self, nI, nB, nO, eta, alp, bet):
         '''initialize neural network with random weights'''
         self.numInput = nI # number of input nodes
         self.numBetween = nB
         self.numOutput = nO
         self.Net = WeightedDiGraph(nI + nB + nO + nI)
+        self.alpha = alp
+        self.beta = bet
         self.EPS = 0.00
         
         # initialize constant weights
@@ -111,12 +114,12 @@ class NeuralNet:
 
         for i in range(self.numOutput):
             ind = i + self.numInput + self.numBetween
-            delta[ind] = (v[ind] * (1 - v[ind]) + self.EPS) * (int(i == y) - v[ind])
+            delta[ind] = self.alpha * (v[ind] * (1 - v[ind]) + self.EPS) * (int(i == y) - v[ind])
 
         for i in range(self.numInput):
             ''' auto encoder '''
             ind = i + self.numInput + self.numBetween + self.numOutput
-            delta[ind] = 3 * (v[ind] * (1 - v[ind]) + self.EPS) * (x[i] - v[ind])
+            delta[ind] = self.beta * (v[ind] * (1 - v[ind]) + self.EPS) * (x[i] - v[ind])
             
         for i in range(self.numBetween):
             ind = i + self.numInput
@@ -179,19 +182,27 @@ class NeuralNet:
         for j in range(len(X_tes)):
             v = self.compute(X_tes[j])
             for i in range(self.numOutput):
-                err += .5 * (v[self.numInput + self.numBetween + i] - int (Y_tes[j] == i))**2
+                err += self.alpha * (v[self.numInput + self.numBetween + i] - int (Y_tes[j] == i))**2
             for i in range(self.numInput):
-                err += 1.5 * (v[self.numInput + self.numBetween + self.numOutput + i] - X_tes[j][i])**2
+                err += self.beta * (v[self.numInput + self.numBetween + self.numOutput + i] - X_tes[j][i])**2
 
         return err
 
+def AutoEncoder(X, mid):
+    nnet = NeuralNet(16, mid, 10, 0.1, 0, 1.0)
+    for i in range(20):
+        print "Round: " + str(i)
+        nnet.unlabeled_backprop_once(X, 0.9, (100 - i) * .4 / len(X))
+        print nnet.error(X, [0] * len(X))
+    return map(lambda x: nnet.compute(x)[16:16+mid],X)
+    
 if __name__ == "__main__":
     frac = float(sys.argv[1])
 
     pen = parser.PenParser()
     X_lab, Y_lab, X_unlab, X_tes, Y_tes = pen.retrieve_pendigits_data(frac)
-
-    nnet = NeuralNet(16, 14, 10, 0.1)
+    
+    nnet = NeuralNet(16, 10, 10, 0.1, 1.0, 1.0)
     
     print 'Supervised initial phase'
 
@@ -199,7 +210,7 @@ if __name__ == "__main__":
     
     for i in range(100):
         print "Round: " + str(i)
-        nnet.labeled_backprop_once(X_lab, Y_lab, .9, (100.0 - i)*.002)
+        nnet.labeled_backprop_once(X_lab, Y_lab, .9, (101.0 - i)*.05/math.sqrt(len(X_lab)))
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
         print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
         
@@ -207,7 +218,7 @@ if __name__ == "__main__":
         
     for i in range(500):
         print "Round: " + str(i + 100)
-        nnet.unlabeled_backprop_once(X_unlab, 0.9, (i + 1) * .0000002)
-        nnet.labeled_backprop_once(X_lab, Y_lab, 0.9, (600 - i) * .0004)
+        nnet.unlabeled_backprop_once(X_unlab, 0.9, (i + 1) * .0002/math.sqrt(len(X_unlab)))
+        nnet.labeled_backprop_once(X_lab, Y_lab, 0.9, (600 - i) * .005/math.sqrt(len(X_lab)))
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
         print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
