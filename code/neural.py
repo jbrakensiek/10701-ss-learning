@@ -48,7 +48,7 @@ class NeuralNet:
         self.numBetween = nB
         self.numOutput = nO
         self.Net = WeightedDiGraph(nI + nB + nO + nI)
-        self.EPS = 0.01
+        self.EPS = 0.00
         
         # initialize constant weights
         for i in range(self.Net.N):
@@ -116,7 +116,7 @@ class NeuralNet:
         for i in range(self.numInput):
             ''' auto encoder '''
             ind = i + self.numInput + self.numBetween + self.numOutput
-            delta[ind] = (v[ind] * (1 - v[ind]) + self.EPS) * (x[i] - v[ind])
+            delta[ind] = 3 * (v[ind] * (1 - v[ind]) + self.EPS) * (x[i] - v[ind])
             
         for i in range(self.numBetween):
             ind = i + self.numInput
@@ -179,9 +179,9 @@ class NeuralNet:
         for j in range(len(X_tes)):
             v = self.compute(X_tes[j])
             for i in range(self.numOutput):
-                err += (v[self.numInput + self.numBetween + i] - int (Y_tes[j] == i))**2
+                err += .5 * (v[self.numInput + self.numBetween + i] - int (Y_tes[j] == i))**2
             for i in range(self.numInput):
-                err += (v[self.numInput + self.numBetween + self.numOutput + i] - X_tes[j][i])**2
+                err += 1.5 * (v[self.numInput + self.numBetween + self.numOutput + i] - X_tes[j][i])**2
 
         return err
 
@@ -191,7 +191,7 @@ if __name__ == "__main__":
     pen = parser.PenParser()
     X_lab, Y_lab, X_unlab, X_tes, Y_tes = pen.retrieve_pendigits_data(frac)
 
-    nnet = NeuralNet(16, 16, 10, 0.1)
+    nnet = NeuralNet(16, 14, 10, 0.1)
     
     print 'Supervised initial phase'
 
@@ -199,7 +199,7 @@ if __name__ == "__main__":
     
     for i in range(100):
         print "Round: " + str(i)
-        nnet.labeled_backprop_once(X_lab, Y_lab, .8, (100.0 - i)/len(X_lab))
+        nnet.labeled_backprop_once(X_lab, Y_lab, .9, (100.0 - i)*.002)
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
         print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
         
@@ -207,7 +207,7 @@ if __name__ == "__main__":
         
     for i in range(500):
         print "Round: " + str(i + 100)
-        nnet.unlabeled_backprop_once(X_unlab, 0.8, (i + 1) * .02/len(X_unlab))
-        nnet.labeled_backprop_once(X_lab, Y_lab, 0.8, (600 - i) * .2/len(X_lab))
+        nnet.unlabeled_backprop_once(X_unlab, 0.9, (i + 1) * .0000002)
+        nnet.labeled_backprop_once(X_lab, Y_lab, 0.9, (600 - i) * .0004)
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
         print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
