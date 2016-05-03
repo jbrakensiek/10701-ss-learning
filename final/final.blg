@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: final.aux
+The style file: alpha.bst
+Database file #1: final.bib
+Warning--empty journal in Alpaydin:1998
+You've used 11 entries,
+            2543 wiz_defined-function locations,
+            619 strings with 6315 characters,
+and the built_in function-call counts, 4563 in all, are:
+= -- 445
+> -- 206
+< -- 10
++ -- 70
+- -- 68
+* -- 277
+:= -- 723
+add.period$ -- 35
+call.type$ -- 11
+change.case$ -- 70
+chr.to.int$ -- 10
+cite$ -- 12
+duplicate$ -- 210
+empty$ -- 362
+format.name$ -- 82
+if$ -- 975
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 9
+newline$ -- 58
+num.names$ -- 33
+pop$ -- 96
+preamble$ -- 1
+purify$ -- 80
+quote$ -- 0
+skip$ -- 173
+stack$ -- 0
+substring$ -- 197
+swap$ -- 51
+text.length$ -- 10
+text.prefix$ -- 5
+top$ -- 0
+type$ -- 88
+warning$ -- 1
+while$ -- 39
+width$ -- 13
+write$ -- 141
+(There was 1 warning)

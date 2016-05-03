@@ -1,0 +1,69 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{LPM{\etalchar{+}}08}
+
+\bibitem[AA98]{Alpaydin:1998}
+E~Alpaydin and Fevzi Alimoglu.
+\newblock Uci pen-based recognition of handwritten digits data set.
+\newblock 1998.
+
+\bibitem[BM98]{blum1998combining}
+Avrim Blum and Tom Mitchell.
+\newblock Combining labeled and unlabeled data with co-training.
+\newblock In {\em Proceedings of the eleventh annual conference on
+  Computational learning theory}, pages 92--100. ACM, 1998.
+
+\bibitem[BNS05]{belkin2005manifold}
+Misha Belkin, Partha Niyogi, and Vikasy Sindhwani.
+\newblock On manifold regularization.
+\newblock In {\em AISTATS}, 2005.
+
+\bibitem[Dhi01]{dhillon2001co}
+Inderjit~S Dhillon.
+\newblock Co-clustering documents and words using bipartite spectral graph
+  partitioning.
+\newblock In {\em Proceedings of the seventh ACM SIGKDD international
+  conference on Knowledge discovery and data mining}, pages 269--274. ACM,
+  2001.
+
+\bibitem[J{\etalchar{+}}03]{joachims2003transductive}
+Thorsten Joachims et~al.
+\newblock Transductive learning via spectral graph partitioning.
+\newblock In {\em ICML}, 2003.
+
+\bibitem[Joa99a]{Joachims:1999}
+T~Joachims.
+\newblock Transductive inference for text classifcation using support vector
+  machines.
+\newblock In {\em ICML}, pages 200--209, 1999.
+
+\bibitem[Joa99b]{joachims1999making}
+Thorsten Joachims.
+\newblock Making large scale svm learning practical.
+\newblock Technical report, Universit{\"a}t Dortmund, 1999.
+
+\bibitem[Lee13]{Lee:2013}
+Dong-Hyun Lee.
+\newblock Pseudo-label: The simple and efficient semi-supervised learning
+  method for deep neural networks.
+\newblock In {\em Workshop on Challenges in Representation Learning, ICML},
+  volume~3, 2013.
+
+\bibitem[Lic13]{Lichman:2013}
+M.~Lichman.
+\newblock {UCI} machine learning repository, 2013.
+
+\bibitem[LPM{\etalchar{+}}08]{Llorens:2008}
+David Llorens, Federico Prat, Andr{\'e}s Marzal, Juan~Miguel Vilar,
+  Mar{\'\i}a~Jos{\'e} Castro, Juan-Carlos Amengual, Sergio Barrachina, Antonio
+  Castellanos, Salvador~Espa{\~n}a Boquera, JA~G{\'o}mez, et~al.
+\newblock The ujipenchars database: a pen-based database of isolated
+  handwritten characters.
+\newblock In {\em LREC}, 2008.
+
+\bibitem[SK03]{smola2003kernels}
+Alexander~J Smola and Risi Kondor.
+\newblock Kernels and regularization on graphs.
+\newblock In {\em Learning theory and kernel machines}, pages 144--158.
+  Springer, 2003.
+
+\end{thebibliography}

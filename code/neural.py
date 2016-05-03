@@ -5,9 +5,9 @@ import sys
 import numpy as np
 
 def sigmoid(x):
-    if x > 300:
+    if x > 200:
         return 1
-    if x < -300:
+    if x < -200:
         return 0    
     return 1.0 / (1.0 + math.exp(-x))
 
@@ -21,20 +21,20 @@ class WeightedDiGraph:
         self.N = n_vertices # number of vertices
         self.adj = [None] * self.N # adjaceny list dictionary with weight
         self.rev = [None] * self.N # back edges
-        self.prev = [None] * self.N # previous gradient, for momentum
+        self.grad = [None] * self.N # previous gradient, for momentum
         for i in range(self.N):
             self.adj[i] = dict()
             self.rev[i] = dict()
-            self.prev[i] = dict()
+            self.grad[i] = dict()
     
         self.const = [0] * self.N # constant weights
-        self.const_prev = [0] * self.N # previous gradient on constants
+        self.const_grad = [0] * self.N # previous gradient on constants
         
     def add_edge(self, v_in, v_out, w):
         '''adds the edge if it did not exist before'''
         self.adj[v_in][v_out] = w
         self.rev[v_out][v_in] = w
-        self.prev[v_in][v_out] = 0
+        self.grad[v_in][v_out] = 0
 
 class NeuralNet:
     ''' A semi-supervised neural network implementation
@@ -47,7 +47,7 @@ class NeuralNet:
         self.numInput = nI # number of input nodes
         self.numBetween = nB
         self.numOutput = nO
-        self.Net = WeightedDiGraph(nI + nB + nO)
+        self.Net = WeightedDiGraph(nI + nB + nO + nI)
         self.EPS = 0.01
         
         # initialize constant weights
@@ -60,7 +60,9 @@ class NeuralNet:
         for i in range(nB):
             for j in range(nO):
                 self.Net.add_edge(i + nI, j + nI + nB, random() * eta)
-
+            for j in range(nI):
+                self.Net.add_edge(i + nI, j + nI + nB + nO, random() * eta)
+                
     def compute(self, x, drop=False):
         '''compute the values of all the units on input x'''
         assert (len(x) == self.numInput)
@@ -111,6 +113,11 @@ class NeuralNet:
             ind = i + self.numInput + self.numBetween
             delta[ind] = (v[ind] * (1 - v[ind]) + self.EPS) * (int(i == y) - v[ind])
 
+        for i in range(self.numInput):
+            ''' auto encoder '''
+            ind = i + self.numInput + self.numBetween + self.numOutput
+            delta[ind] = (v[ind] * (1 - v[ind]) + self.EPS) * (x[i] - v[ind])
+            
         for i in range(self.numBetween):
             ind = i + self.numInput
             for j in self.Net.adj[ind]:
@@ -118,24 +125,43 @@ class NeuralNet:
                 delta[ind] += (v[ind] * (1 - v[ind]) + self.EPS) * self.Net.adj[ind][j] * delta[j]
 
         for i in range(self.Net.N):
-            self.Net.const_prev[i] = p * self.Net.const_prev[i] + (1-p) * eta * delta[i]
-            self.Net.const[i] += self.Net.const_prev[i]
+            self.Net.const_grad[i] += eta * delta[i]
             for j in self.Net.adj[i]:
                 assert i in self.Net.rev[j]
-                self.Net.prev[i][j] = p * self.Net.prev[i][j] + eta * delta[j] * v[i]
-                self.Net.adj[i][j] += self.Net.prev[i][j]
-                self.Net.rev[j][i] = self.Net.adj[i][j]
+                self.Net.grad[i][j] += eta * delta[j] * v[i]
         
     def labeled_backprop_once(self, X, Y, p, eta):
         ''' train the neural net on the labeled data using back propogation'''
-        for j in range(len(X)):
-            self.update(X[j], Y[j], p, eta)
+        for k in range(len(X)):
+            for i in range(self.Net.N):
+                self.Net.const_grad[i] *= p
+                for j in self.Net.adj[i]:
+                    self.Net.grad[i][j] *= p
         
+            self.update(X[k], Y[k], p, eta)
+
+            for i in range(self.Net.N):
+                self.Net.const[i] += self.Net.const_grad[i]
+                for j in self.Net.adj[i]:
+                    self.Net.adj[i][j] += self.Net.grad[i][j]
+                    self.Net.rev[j][i] = self.Net.adj[i][j]
+            
     def unlabeled_backprop_once(self, X, p, eta):
         ''' train the neural net on the unlabeled data using pseudolabels'''
-        for j in range(len(X)):
-            self.update(X[j], self.classify(X[j]), p, eta)
+        for k in range(len(X)):
+            for i in range(self.Net.N):
+                self.Net.const_grad[i] *= p
+                for j in self.Net.adj[i]:
+                    self.Net.grad[i][j] *= p
 
+            self.update(X[k], self.classify(X[k]), p, eta)
+
+            for i in range(self.Net.N):
+                self.Net.const[i] += self.Net.const_grad[i]
+                for j in self.Net.adj[i]:
+                    self.Net.adj[i][j] += self.Net.grad[i][j]
+                    self.Net.rev[j][i] = self.Net.adj[i][j]
+            
     def test(self, X_tes, Y_tes):
         ''' run on test data '''
         mat = [[0] * 10] * 10
@@ -148,6 +174,17 @@ class NeuralNet:
             mat[int(Y_tes[i])][y] += 1
         return 1.0 * cor / len(X_tes), mat
 
+    def error(self, X_tes, Y_tes):
+        err = 0.0
+        for j in range(len(X_tes)):
+            v = self.compute(X_tes[j])
+            for i in range(self.numOutput):
+                err += (v[self.numInput + self.numBetween + i] - int (Y_tes[j] == i))**2
+            for i in range(self.numInput):
+                err += (v[self.numInput + self.numBetween + self.numOutput + i] - X_tes[j][i])**2
+
+        return err
+
 if __name__ == "__main__":
     frac = float(sys.argv[1])
 
@@ -155,20 +192,22 @@ if __name__ == "__main__":
     X_lab, Y_lab, X_unlab, X_tes, Y_tes = pen.retrieve_pendigits_data(frac)
 
     nnet = NeuralNet(16, 16, 10, 0.1)
-
+    
     print 'Supervised initial phase'
 
     print len(X_lab)
     
     for i in range(100):
         print "Round: " + str(i)
-        nnet.labeled_backprop_once(X_lab, Y_lab, .99, 1000.0/len(X_lab))
+        nnet.labeled_backprop_once(X_lab, Y_lab, .8, (100.0 - i)/len(X_lab))
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
-
+        print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
+        
     print 'Semi-supervised phase'
         
     for i in range(500):
         print "Round: " + str(i + 100)
-        nnet.unlabeled_backprop_once(X_unlab, .99, ((i+1) * 0.8) /len(X_unlab))
-        nnet.labeled_backprop_once(X_lab, Y_lab, .99, 200.0/len(X_lab))
+        nnet.unlabeled_backprop_once(X_unlab, 0.8, (i + 1) * .02/len(X_unlab))
+        nnet.labeled_backprop_once(X_lab, Y_lab, 0.8, (600 - i) * .2/len(X_lab))
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
+        print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
