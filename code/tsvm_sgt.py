@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import scipy.linalg
 
 class tsvm:
     ''' inputvec is a 2D numpy array, where the i-th entry of inputvec
@@ -10,17 +11,22 @@ class tsvm:
         We will use both in this code, so let's be clear about the distinction
         to avoid confusion
     '''
-    def __init__(self, inputvec, outputvec, unlabeledvec):
+    def __init__(self, inputvec, outputvec, unlabeledvec, X_test):
         (self.numpoints, self.datadimension) = inputvec.shape
         self.numunlabeled = unlabeledvec.shape[0]
+        self.numtest = X_test.shape[0]
         self.labeled_data = inputvec
-        self.numtotal = self.numunlabeled + self.numpoints
+        self.numtotal = self.numunlabeled + self.numpoints + self.numtest
         self.unlabeled_data = unlabeledvec
         self.labels = outputvec
-        self.totaldata = np.concatenate((inputvec, unlabeledvec))
-        self.labelcomplete = np.concatenate((outputvec, np.zeros(self.numunlabeled)))
+        self.test_data = X_test
+        print(self.labels)
+        self.totaldata = np.concatenate((np.concatenate((inputvec,\
+            unlabeledvec)), self.test_data))
+        self.labelcomplete = np.concatenate((outputvec,\
+            np.zeros(self.numunlabeled + self.numtest)))
         self.laplacian = np.matrix([])
-    
+
     ''' Boolean value necessary to specify is objective function should be
         minimized or maximized.
         The way the optimization function is designed, it can be expressed
@@ -53,7 +59,7 @@ class tsvm:
         #find a faster way to do the following with numpy functions
         for i in range(self.numtotal):
             ithvec = self.totaldata[i]
-            sum_ithrow = 0
+            sum_ithrow = 1
             if (i % 300 == 0):
                 print "antiboredom device", i
             for j in range(i):
@@ -73,7 +79,8 @@ class tsvm:
 
         #using eigh over eig because it is optimized to work on symmetric
         #matrices
-        laplace_eigval, laplace_eigvec = np.linalg.eigh(self.laplacian)
+        laplace_eigval, laplace_eigvec = scipy.linalg.eigh(self.laplacian,\
+            eigvals=(self.numtotal-20,self.numtotal-1))
 
         #some eigenvectors/eigenvalues should potentially be discarded
         #figure out which ones!
@@ -101,13 +108,14 @@ class tsvm:
         print "checkpoint", 3
 
         #length(outputvec) - this number is always even
-        numpositive = ((numpoints + sumlabels) / 2)
-        numnegative = ((numpoints - sumlabels) / 2)
+        numpositive = ((self.numpoints + sumlabels) / 2)
+        numnegative = ((self.numpoints - sumlabels) / 2)
 
+        print(numpositive, numnegative)
         #the names of the parameters are from the paper, I will add
         #explanations for what these parameters mean soon.
-        gammaplus = sqrt(float(numnegative)/float(numpositive))
-        gammaminus = -1 * sqrt(float(numpositive)/float(numnegative))
+        gammaplus = math.sqrt(float(numnegative)/float(numpositive))
+        gammaminus = -1 * math.sqrt(float(numpositive)/float(numnegative))
 
         print "checkpoint", 4
 
@@ -122,11 +130,11 @@ class tsvm:
 
         #more stuff to put here
         costsynthesis = np.zeros(self.numtotal)
-        for i in range(self.numtotal):
+        for i in range(len(self.labels)):
             if (self.labels[i] == 1):
-                costsynthesis[i] = float(numpoints) / (2.0 * float(numpositive))
+                costsynthesis[i] = float(self.numpoints) / (2.0 * float(numpositive))
             else:
-                costsynthesis[i] = float(numpoints) / (2.0 * float(numnegative))
+                costsynthesis[i] = float(self.numpoints) / (2.0 * float(numnegative))
         costsynthesis = np.diag(costsynthesis) #this is the 'C' in the paper.
 
         print "checkpoint", 6
@@ -145,16 +153,24 @@ class tsvm:
 
         #the paper defines a vector called b, vecb represents that vector
         vecb = np.dot(costweigh_eig, gammavec.T)
-        
+        #vecb = np.matrix(vecb)
+        vecb = np.reshape(vecb, (1,-1))
+
         numrowsinG = len(matG)
         negidentity = np.diag(-1 * np.ones(numrowsinG))
 
+        print("jacob jacob jacob", vecb)
+
         #The following patch of code is to replicate the matrix whose
         #smallest eigenvalue is of interest to us
-        topPart = np.concatenate((matG.T, negidentity)).T
-        leftbottom = (float(-1)/float(numtotal)) * np.dot(vecb.T, vecb)
+        topPart = np.concatenate((matG.transpose(), negidentity)).transpose()
+        leftbottom = (float(-1)/float(self.numtotal)) *\
+            np.dot(vecb.transpose(), vecb)
         #matG is the rightbottom
-        bottomPart = np.concatenate((leftbottom.T, matG.t)).T
+        print("jacob imola", leftbottom)
+        print("is not anthony platanion", matG)
+        bottomPart = np.concatenate((leftbottom.transpose(),\
+            matG.transpose())).transpose()
         interestmatrix = np.concatenate((topPart, bottomPart))
 
         ''' - Matrix not symmetric so not sure if eigenvalues are even real
@@ -163,17 +179,22 @@ class tsvm:
               part because of roundoff error. Hence the map.
         '''
         eigvalsOfInterest = np.linalg.eigvals(interestmatrix)
-        eigvalsOfInterest = map(lambda x: sqrt(float((np.real(x) ** 2) +\
+        eigvalsOfInterest = map(lambda x: math.sqrt(float((np.real(x) ** 2) +\
             (np.imag(x) ** 2))), eigvalsOfInterest)
         #eigenstar is the lambda^* variable
         eigenstar = min(eigvalsOfInterest)
-        
+        print("eigenstar", eigenstar)
+
+        print(np.shape(sorted_laplace_eigvec), np.shape(matG),\
+            np.shape(eigenstar), np.shape(negidentity), np.shape(vecb))
         predictionhelper = np.dot(np.dot(sorted_laplace_eigvec,\
-            np.linalg.inv(matG + (eigenstar * negidentity))), bvec)
+            np.linalg.inv(matG + (eigenstar * negidentity))), vecb.transpose())
 
         #find a better threshold
         threshold = 0.5 * float(gammaplus + gammaminus)
 
-        predictions = map(lambda x: -1 if x < threshold else 1,\
-            predictionhelper)
-        return predictions
+        predictions = map(lambda x: x - threshold, predictionhelper)
+        return predictions[self.numtotal - self.numtest : self.numtotal]
+        #predictions = map(lambda x: -1 if x < threshold else 1,\
+        #    predictionhelper)
+        #return (predictions, predictionhelper, threshold)
