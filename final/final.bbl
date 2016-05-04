@@ -65,6 +65,11 @@ David Llorens, Federico Prat, Andr{\'e}s Marzal, Juan~Miguel Vilar,
   handwritten characters.
 \newblock In {\em LREC}, 2008.
 
+\bibitem[MS77]{macwilliams1977theory}
+Florence~Jessie MacWilliams and Neil James~Alexander Sloane.
+\newblock {\em The theory of error correcting codes}, volume~16.
+\newblock Elsevier, 1977.
+
 \bibitem[SK03]{smola2003kernels}
 Alexander~J Smola and Risi Kondor.
 \newblock Kernels and regularization on graphs.

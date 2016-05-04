@@ -115,7 +115,7 @@ elif (which_classifier == 3):
 
     print(np.shape(boundaries))
     predictions = []
-    for i in range(0, len(Y_test)):
+    for i in range(0, 600): #change this
         hamming_best = 7
         best_pred = -1
         helper_best = 100000
@@ -123,6 +123,7 @@ elif (which_classifier == 3):
             hamming_dist = 0
             helper_dist = 0
             for j in range(0, len(digitclasses) - 1):
+                print(j, i)
                 if ((boundaries[j][i][0] > 0 and (dig not in\
                     digitclasses[j])) or (boundaries[j][i][0] <= 0\
                     and (dig in digitclasses[j]))):
@@ -142,10 +143,10 @@ elif (which_classifier == 3):
                     best_pred = dig
         predictions.append(best_pred)
     correct = 0
-    for i in range(0, len(Y_test)):
+    for i in range(0, 600):
         if (Y_test[i] == predictions[i]):
             correct += 1
-    print(float(correct) / float(len(Y_test)))
+    print(float(correct) / float(600))
     confusion_matrix = np.zeros((10,10))
     for a in range(0, len(predictions)):
         confusion_matrix[int(predictions[a])][int(Y_test[a])] += 1
