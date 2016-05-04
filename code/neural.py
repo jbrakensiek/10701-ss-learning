@@ -167,14 +167,14 @@ class NeuralNet:
             
     def test(self, X_tes, Y_tes):
         ''' run on test data '''
-        mat = [[0] * 10] * 10
+        mat = np.zeros((10, 10))
         cor = 0
         for i in range(len(X_tes)):
             y = self.classify(X_tes[i])
             if (y == int(Y_tes[i])):
                 cor += 1
             #print y, int(Y_tes[i])
-            mat[int(Y_tes[i])][y] += 1
+            mat[int(Y_tes[i]), y] += 1
         return 1.0 * cor / len(X_tes), mat
 
     def error(self, X_tes, Y_tes):
@@ -210,7 +210,7 @@ if __name__ == "__main__":
 #    X_unlab = auto[len(X_lab):,]
 #    X_tes = ZZ
     
-    nnet = NeuralNet(16, 12, 10, 0.1, 1.0, 3.0)
+    nnet = NeuralNet(16, 16, 10, 0.1, 1.0, 1.0)
 
     print len(X_lab)
 
@@ -224,14 +224,16 @@ if __name__ == "__main__":
     
 #    print 'Supervised initial phase'
     
-    for i in range(50):
+    for i in range(100):
         print "Round: " + str(i)
         nnet.labeled_backprop_once(X_lab, Y_lab, .9, (101.0 - i)*.005/math.sqrt(len(X_lab)))
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
         print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
         
+    print nnet.test(X_tes, Y_tes), nnet.test(X_lab, Y_lab)
+        
     print 'Semi-supervised phase'
-    nnet.beta = 4.0
+    nnet.beta= 2.0
     
     for i in range(500):
         print "Round: " + str(i + 100)
@@ -239,3 +241,5 @@ if __name__ == "__main__":
         nnet.labeled_backprop_once(X_lab, Y_lab, 0.9, (600 - i) * .0004/math.sqrt(len(X_lab)))
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
         print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
+
+    print nnet.test(X_tes, Y_tes), nnet.test(X_lab, Y_lab)
