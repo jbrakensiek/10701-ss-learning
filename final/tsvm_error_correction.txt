@@ -1,0 +1,50 @@
+In this approach, we associate each class (in our case, each class
+is a digit) to a point in the space $\{-1,+1\}^k$
+for some appropriately chosen $k$. We choose our points as codewords
+of some error correcting code, which for our purposes means that the
+representations of any 2 digits in this transformed space are
+far apart: a digit would look something like $(-1,1,1,-1,-1,1)$.
+A separate transductive SVM is trained on each entry in the tuple,
+and classification is performed on a new datapoint $x$ by picking the
+class that is least Hamming distance away from the classification
+$(h_1(x),\ldots,h_k(x))$ where the $h_i$ are the separately trained
+classifiers.
+
+The representations of the digits we chose were the codewords of the
+(7,4)-Hamming code <insert reference>. They have the property that any
+any two codewords are Hamming distance 3 apart, and are robust up to
+a single corruption. This means that if the class for digit 2 was
+$(-1,1,-1,1,1)$ and the classifier on the fourth bit was incorrect
+leading to $(-1,1,-1,-1,1)$, the algorithm would still correctly
+classify the datapoint as digit 2.
+
+A distinct advantage this might have over the ``one versus rest''
+classifier is it's robustness if one classifier makes a mistake.
+
+------------------------------------
+
+Stuff for the experiments section:
+An approach that might have yielded better results is
+using a code with greater redundancy such as the Hadamard
+code <insert reference>.
+This way, the algorithm would be robust to more errors on separate entries
+of the tuple. The way the codewords were assigned to digits was arbitrary
+and a more careful assignment that put more distant codewords on similar digits
+(like 1 and 7, or 4 and 9).
+That way, the chance of the algorithm confusing between digits would be lessened.
+
+Our implementation of ``one versus rest'' took the margin of classification
+into account, but our approach using error correcting codes does not do that,
+which might be a reason ``one versus rest'' marginally
+outperforms error correction.
+
+-------------------------------------
+
+A baseline we had earlier was ``one versus rest'' using a linear kernel,
+which performed at 88% accuracy on 20% labeled data. Using the polynomial
+kernel $(x_i\cdot x_j + 3)^5$
+brought the test accuracy up to 96%, and using a Gaussian kernel
+where the kernel function was of the form $e^{-0.8\|x_i-x_j\|^2}$
+earned a test accuracy of 97%. The error correcting codes technique
+performed slightly worse, with a test accuracy of 95% on the polynomial
+kernel and a test accuracy of 96% on the Gaussian kernel.
