@@ -188,37 +188,54 @@ class NeuralNet:
 
         return err
 
-def AutoEncoder(X, mid):
+def AutoEncoder(X, X_test, mid):
     nnet = NeuralNet(16, mid, 10, 0.1, 0, 1.0)
-    for i in range(20):
+    for i in range(1):
         print "Round: " + str(i)
         nnet.unlabeled_backprop_once(X, 0.9, (100 - i) * .4 / len(X))
         print nnet.error(X, [0] * len(X))
-    return map(lambda x: nnet.compute(x)[16:16+mid],X)
+    return map(lambda x: nnet.compute(x)[16:16+mid],X), map(lambda x: nnet.compute(x)[16:16+mid], X_test)
     
 if __name__ == "__main__":
     frac = float(sys.argv[1])
 
     pen = parser.PenParser()
     X_lab, Y_lab, X_unlab, X_tes, Y_tes = pen.retrieve_pendigits_data(frac)
+
+#    Z = np.append(X_lab, X_unlab, axis = 0)
+#    auto, ZZ = AutoEncoder(Z, X_tes, 12)
+
+#    X_lab = auto[:len(X_lab),]
+#    print np.shape(X_lab)
+#    X_unlab = auto[len(X_lab):,]
+#    X_tes = ZZ
     
-    nnet = NeuralNet(16, 10, 10, 0.1, 1.0, 1.0)
-    
-    print 'Supervised initial phase'
+    nnet = NeuralNet(16, 12, 10, 0.1, 1.0, 3.0)
 
     print len(X_lab)
+
+#    print 'Unsupervised phase'
+#    for i in range(20):
+#        print "Round: " + str(i - 100)
+#        Z = len(X_lab) + len(X_unlab)
+#        nnet.unlabeled_backprop_once(X_lab, 0.9, 50.0 / Z)
+#        nnet.unlabeled_backprop_once(X_unlab, 0.9, 50.0 / Z)
+#        print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
     
-    for i in range(100):
+#    print 'Supervised initial phase'
+    
+    for i in range(50):
         print "Round: " + str(i)
-        nnet.labeled_backprop_once(X_lab, Y_lab, .9, (101.0 - i)*.05/math.sqrt(len(X_lab)))
+        nnet.labeled_backprop_once(X_lab, Y_lab, .9, (101.0 - i)*.005/math.sqrt(len(X_lab)))
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
         print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)
         
     print 'Semi-supervised phase'
-        
-    for i in range(500):
+    nnet.beta = 4.0
+    
+    for i in range(250):
         print "Round: " + str(i + 100)
-        nnet.unlabeled_backprop_once(X_unlab, 0.9, (i + 1) * .0002/math.sqrt(len(X_unlab)))
-        nnet.labeled_backprop_once(X_lab, Y_lab, 0.9, (600 - i) * .005/math.sqrt(len(X_lab)))
+        nnet.unlabeled_backprop_once(X_unlab, 0.9, (i + 1) * .000005/math.sqrt(len(X_unlab)))
+        nnet.labeled_backprop_once(X_lab, Y_lab, 0.9, (600 - i) * .0005/math.sqrt(len(X_lab)))
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
         print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)

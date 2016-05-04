@@ -6,6 +6,11 @@ E~Alpaydin and Fevzi Alimoglu.
 \newblock Uci pen-based recognition of handwritten digits data set.
 \newblock 1998.
 
+\bibitem[BDM15]{DBLP:journals/corr/BalcanDM15}
+Maria{-}Florina Balcan, Travis Dick, and Yishay Mansour.
+\newblock On the geometry of output-code multi-class learning.
+\newblock {\em CoRR}, abs/1511.03225, 2015.
+
 \bibitem[BM98]{blum1998combining}
 Avrim Blum and Tom Mitchell.
 \newblock Combining labeled and unlabeled data with co-training.
