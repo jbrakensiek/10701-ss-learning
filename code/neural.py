@@ -188,13 +188,13 @@ class NeuralNet:
 
         return err
 
-def AutoEncoder(X, X_test, mid):
+def AutoEncoder(X, mid):
     nnet = NeuralNet(16, mid, 10, 0.1, 0, 1.0)
-    for i in range(1):
+    for i in range(20):
         print "Round: " + str(i)
         nnet.unlabeled_backprop_once(X, 0.9, (100 - i) * .4 / len(X))
         print nnet.error(X, [0] * len(X))
-    return map(lambda x: nnet.compute(x)[16:16+mid],X), map(lambda x: nnet.compute(x)[16:16+mid], X_test)
+    return map(lambda x: nnet.compute(x)[16:16+mid],X)
     
 if __name__ == "__main__":
     frac = float(sys.argv[1])
@@ -202,6 +202,9 @@ if __name__ == "__main__":
     pen = parser.PenParser()
     X_lab, Y_lab, X_unlab, X_tes, Y_tes = pen.retrieve_pendigits_data(frac)
 
+    Z = AutoEncoder(X_lab, 8)
+    pickle.dump((Z, Y_lab), open("auto2.pkl", "wb"))
+    
 #    Z = np.append(X_lab, X_unlab, axis = 0)
 #    auto, ZZ = AutoEncoder(Z, X_tes, 12)
 
