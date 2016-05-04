@@ -1,11 +1,20 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.2.11)  4 MAY 2016 17:52
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.5.29)  4 MAY 2016 16:14
+>>>>>>> 13e95baa50f4ce5d656d374d7832e3198709c6c1
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **final.tex
 (./final.tex
+<<<<<<< HEAD
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+=======
+LaTeX2e <2014/05/01>
+Babel <3.9l> and hyphenation patterns for 2 languages loaded.
+>>>>>>> 13e95baa50f4ce5d656d374d7832e3198709c6c1
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
@@ -92,6 +101,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+<<<<<<< HEAD
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
@@ -100,6 +110,16 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+=======
+Package: graphicx 2014/04/25 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
+\KV@toks@=\toks19
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+>>>>>>> 13e95baa50f4ce5d656d374d7832e3198709c6c1
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
@@ -107,7 +127,7 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 94.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
@@ -125,7 +145,11 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 (./nips15submit_e.sty
 (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+<<<<<<< HEAD
 Package: eso-pic 2015/04/20 v2.0e eso-pic (RN)
+=======
+Package: eso-pic 2013/10/06 v2.0d eso-pic (RN)
+>>>>>>> 13e95baa50f4ce5d656d374d7832e3198709c6c1
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
@@ -170,7 +194,11 @@ Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+<<<<<<< HEAD
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+=======
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+>>>>>>> 13e95baa50f4ce5d656d374d7832e3198709c6c1
 )) (./final.aux)
 \openout1 = `final.aux'.
 
@@ -265,14 +293,25 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 13.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 15.
+<<<<<<< HEAD
 
 Underfull \vbox (badness 3826) has occurred while \output is active []
 
  [1
+=======
+
+Underfull \vbox (badness 1377) has occurred while \output is active []
+
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Underfull \vbox (badness 1810) has occurred while \output is active []
+>>>>>>> 13e95baa50f4ce5d656d374d7832e3198709c6c1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
 
 LaTeX Warning: No positions in optional float specifier.
+<<<<<<< HEAD
                Default added (so using `tbp') on input line 226.
 
 <tsvm.pdf, id=29, 550.15535pt x 398.38837pt>
@@ -282,10 +321,22 @@ Package pdftex.def Info: tsvm.pdf used on input line 258.
 (pdftex.def)             Requested size: 361.34999pt x 261.67879pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
+=======
+               Default added (so using `tbp') on input line 248.
 
- [5]
-(./final.bbl [6 <./tsvm.pdf>]) [7] (./final.aux) ) 
+<figure_1.png, id=28, 586.8324pt x 442.2924pt>
+File: figure_1.png Graphic file (type png)
+ <use figure_1.png>
+Package pdftex.def Info: figure_1.png used on input line 280.
+(pdftex.def)             Requested size: 361.34999pt x 272.35577pt.
+ [5] [6 <./figure_1.png>] (./final.bbl) [7] (./final.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+>>>>>>> 13e95baa50f4ce5d656d374d7832e3198709c6c1
+
+ ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  3310 strings out of 493085
  42181 string characters out of 6136917
  114083 words of memory out of 5000000
@@ -308,9 +359,33 @@ pe1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on final.pdf (7 pages, 177239 bytes).
+=======
+ 3313 strings out of 495020
+ 42215 string characters out of 6181324
+ 111046 words of memory out of 5000000
+ 6472 multiletter control sequences out of 15000+600000
+ 27514 words of font info for 39 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 38i,10n,39p,1484b,228s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on final.pdf (7 pages, 206673 bytes).
+>>>>>>> 13e95baa50f4ce5d656d374d7832e3198709c6c1
 PDF statistics:
- 125 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
