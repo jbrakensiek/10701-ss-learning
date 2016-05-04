@@ -233,9 +233,9 @@ if __name__ == "__main__":
     print 'Semi-supervised phase'
     nnet.beta = 4.0
     
-    for i in range(250):
+    for i in range(500):
         print "Round: " + str(i + 100)
         nnet.unlabeled_backprop_once(X_unlab, 0.9, (i + 1) * .000005/math.sqrt(len(X_unlab)))
-        nnet.labeled_backprop_once(X_lab, Y_lab, 0.9, (600 - i) * .0005/math.sqrt(len(X_lab)))
+        nnet.labeled_backprop_once(X_lab, Y_lab, 0.9, (600 - i) * .0004/math.sqrt(len(X_lab)))
         print nnet.test(X_tes, Y_tes)[0], nnet.test(X_lab, Y_lab)[0]
         print nnet.error(X_tes, Y_tes), nnet.error(X_lab, Y_lab)

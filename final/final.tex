@@ -162,8 +162,8 @@ Another line of attack explored is implementing a semi-supervised deep neural ne
 
 We implemented a modified version of Lee's algorithm. The neural network we use consists of four layers: the input nodes, the hidden layer, and the output nodes. There are 16 input nodes which encode the data in its original form. The autoencoder layer stores a better representation of the data. The hidden layer consists of 12 hidden units. The output layer consists of 26 units, 16 units which are trained as an autoencoder and 10 units which are trained for classification. Initially all the weights are set to small random values. During the first phase, we train the neural network only on the labeled data, attempting to minimize the squared error of both the autoencoder and the classification units. We use 50 iterations for this stage. For the second phase, we train both the labeled and unlabeled data trying to minimize both the autoencoder and the classification units, where we use the pseudolabels for the unlabeled data to judge the classification accuracy. This lasts for 250 iterations. In both phases, we use the backpropogation algorithm with momentum. We have the following results: [FORMAT CORRECTLY]
 
-0.5\% - 75\% [UPDATE]
-1\% - TODO
+0.5\% - 76\% [UPDATE]
+1\% - TODOz
 5\% - 90\% [UPDATE]
 10\% - TODO
 20\% - 90\% [UPDATE]
@@ -223,6 +223,10 @@ some of the 0's were misclassified as 8 is that some instances of 0 were written
 For future work, we plan to test the Spectral Graph Transducer algorithm described in section 3.2. We have also not yet incorporated the second data set from \cite{Llorens:2008}. We may end up deciding to not incorporate this data at all, since the data is in a different format and it has more symbols such as Latin letters and Unicode characters and there are fewer samples per character.
 
 Another area of exploration is trying different kernels for the TSVM, perhaps something more complex than a linear kernel and not as advanced as a Gaussian kernel. Doing feature selection could help us find a good kernel. For example, we could change the algorithm of \cite{Joachims:1999} by not enforcing exactly $num_+$ examples to be classified as +1. Another approach would be to use the Graph kernel methods of \cite{smola2003kernels}. We would also like to try different values for the parameters in the algorithm.
+
+\section{Conclusions and Lessons Learned}
+
+From completing this project, we have learned a few important ideas about semisupervised learning. First, we learned that [ADD MORE] When implementing the neural networks, it showed it is quite difficult to use the unlabeled data without falling into a confirmation bias. Using the autoencoder was quite useful in that regard.
 
 \bibliographystyle{alpha}
 \bibliography{final}
