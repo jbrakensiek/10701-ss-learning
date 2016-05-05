@@ -224,8 +224,6 @@ outperforms error correction. This may suggest that having a high margin
 on a single classifier is more indicative of the correct class than
 the number of classifiers that correctly classified a point.
 
-The neural network did about as well as the baseline TSVM approach. Also, it is not clear that the unlabeled data assisted much except perhaps prevent overfitting.
-
 \begin{table}[]
   \centering
   \caption{This table represents the accuracy of our TSVM classification using
@@ -266,6 +264,8 @@ As can be seen in the confusion matrix of the error correcting codes,
 these digits that we picked had Hamming distance 3 away from 1, which
 explains why the confusion was likely.
 
+The semi-supervised neural network did about as well as the baseline TSVM approach. Also, it is not clear that the unlabeled data assisted much except possibly preventing overfitting. Increasing the number of hidden and performing gradient descent for more iterations would have perhaps resulted in a better fit, but also would also risk overfitting; albeit the unlabeled data would help prevent that. 
+
 We also implemented the spectral graph transducer in \cite{joachims2003transductive}, however our classifier
 produced degenerate classifications, classifying every example as either 1 or 2.
 
@@ -296,7 +296,9 @@ On tuning $c$ however, the performance was much better. In particular,
 before tuning $c$, the decision boundary looked like a collection of
 small balls around the datapoints.
 
-When implementing the neural networks, we learned that it is quite difficult to use the unlabeled data without falling into a confirmation bias. Using the autoencoder was quite useful in that regard. It is not clear how much the unlabeled data assisted in finding a better fit. Furthermore, more experimentation could have been done to determine the correct momentum and step sizes.
+When implementing the neural networks, we learned that it is quite difficult to use the unlabeled data without falling into a confirmation bias. Using the autoencoder was quite useful in that regard. Furthermore, more experimentation could have been done to determine the correct momentum and step sizes.
+
+Overall, utilizing structure from unlabeled data to improve performance is a powerful technique, but requires a judicious choice of model in order to be properly exploited.
 
 \bibliographystyle{alpha}
 \bibliography{final}
