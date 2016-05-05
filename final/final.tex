@@ -180,58 +180,12 @@ in \cite{joachims2003transductive}.
 
 \section{Data, Experiments, and Results}
 
-We have exclusively utilized the ``Pen-Based Recognition of Handwritten Digits Data Set'' from \cite{Alpaydin:1998}. We had previously considered supplementing with data from another We have also not yet incorporated the second data set from \cite{Llorens:2008}, but we decided not to incorporate this data since it is in a different format and it has more symbols such as Latin letters and Unicode characters and there are fewer samples per character.
+We have exclusively utilized the ``Pen-Based Recognition of Handwritten Digits Data Set'' from \cite{Alpaydin:1998}. We had previously considered supplementing with data from the second data set in \cite{Llorens:2008}, but we decided not to since the data is in a different format and it has more symbols such as Latin letters and Unicode characters and there are fewer samples per character.
 
-The data presented in \cite{Alpaydin:1998} is a normalized time series of a user drawing a digit. Specifically, each input consisted of eight points in $[0, 100]^2$, representing the location of the pen at each step of drawing the digit. Often the originally collected data by the designers had more steps, but the data set was normalized to achieve uniformity of data while still preserving accuracy. The classifier $h$ we seek to train consists is thus a function from $[0, 100]^{16} \to \{0, 1, \hdots, 9\}$.  As the goal of this project is semi-supervised learning, we partitioned the data into three groups, labeled training data, unlabeled training data, and testing data. The data was already pre-divided into training and testing batches. We used random sampling to make some fraction of the data unlabeled. Our tests would use 0.5\%, 1\%, 5\%, 10\%, 20\%, and 50\% labeled data to understand the impact of more labeled data on our methods.
-
-We tested the searching algorithm used in \cite{Joachims:1999} on this data set
-with two different approaches.
-In one approach, we trained 10 different TSVMs, one to distinguish one digit from the rest of the data (the approach we have been referring to as one-vs-all approach.
-To classify a given test point, we found the signed distance from the point to the decision boundary of each TSVM and found the maximum.
-
-The second approach we used was the one based on error correcting codes,
-described in section 3.3.
-
-A baseline we had earlier was one-vs-all using a linear kernel,
-which performed at 88\% accuracy on 20\% labeled data. Using the polynomial
-kernel $(x_i\cdot x_j + 3)^5$
-brought the test accuracy up to 96\%, and using a Gaussian kernel
-where the kernel function was of the form $e^{-0.8\|x_i-x_j\|^2}$
-earned a test accuracy of 97\%. The error correcting codes technique
-performed slightly worse, with a test accuracy of 82\% on the linear kernel,
-95\% on the polynomial kernel and 96\% on the Gaussian kernel.
-
-We found it surprising that a straightforward one-vs-all
-approach performed better than the error-correcting codes approach,
-since the latter approach was engineered to be robust to classification
-error.
-
-An approach that might have yielded better results is
-using a code with greater redundancy such as the Hadamard
-code \cite{macwilliams1977theory}.
-This way, the algorithm would be robust to more errors on separate entries
-of the tuple.
-Additionally, the way the codewords were assigned to digits was arbitrary
-and a more careful assignment that put more distant codewords on
-similar digits (like 1 and 7, or 4 and 9) would decrease the chance
-of the algorithm confusing similar digits.
-
-Our implementation of one-vs-all took the margin of classification
-into account (in particular, it returned the class with maximum margin of
-classification), but our approach using error correcting codes does not do that,
-which might be a reason one-vs-all slightly 
-outperforms error correction. This may suggest that having a high margin
-on a single classifier is more indicative of the correct class than
-the number of classifiers that correctly classified a point.
-
+The data presented in \cite{Alpaydin:1998} is a normalized time series of a user drawing a digit. Specifically, each input consisted of eight points in $[0, 100]^2$, representing the location of the pen at each step of drawing the digit. Often the original data by the designers had more steps, but the data set was normalized to achieve uniformity of data while still preserving accuracy. The classifier $h$ we seek to train consists is thus a function from $[0, 100]^{16} \to \{0, 1, \hdots, 9\}$.  As the goal of this project is semi-supervised learning, we partitioned the data into three groups, labeled training data, unlabeled training data, and testing data. The data was already pre-divided into training and testing batches. We used random sampling to make some fraction of the data unlabeled. \par
 \begin{table}[]
+  \label{table:1}
   \centering
-  \caption{This table represents the accuracy of our TSVM classification using
-  the error correcting codes approach and the Gaussian kernel
- with 20\% labeled data. The overall accuracy is 96.4\%. Each column represents the actual digit which was drawn, and each row represents the label given by our algorithm. For example, there were several digits with multiple instances
-  incorrectly labeled as 1's, whose codewords were relatively close to the
-  codeword of 1.}
-  \label{my-table}
   \vspace{.3in}
   \begin{tabular}{l|llllllllll}
     & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\\hline
@@ -246,30 +200,58 @@ the number of classifiers that correctly classified a point.
     8 & 2  & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 330 & 1   \\
     9 & 0   & 0   & 0   & 2   & 0  & 0  & 0   & 2   & 0   & 319
   \end{tabular}
+  \caption{This table represents the accuracy of our TSVM classification using
+  the error correcting codes approach and the Gaussian kernel
+  with 20\% labeled data. The overall accuracy is 96.4\%. Column $i$ shows the distribution of the TSVM's classification of digit $i$.}
   \end{table}
+First, we present our TSVM results. Our TSVMs were trained with the same soft-margin constant $C=1.0$ and weighted the unlabeled slightly less at $0.9$.
+A baseline we had earlier was one-vs-all using a linear kernel,
+which performed at 88\% accuracy on 20\% labeled data. Using the polynomial
+kernel $(x_i\cdot x_j + 3)^5$
+brought the test accuracy up to 96\%, and using a Gaussian kernel
+where the kernel function was of the form $e^{-0.8\|x_i-x_j\|^2}$
+earned a test accuracy of 97\%. The error correcting codes technique
+performed slightly worse, with a test accuracy of 82\% on the linear kernel,
+95\% on the polynomial kernel and 96\% on the Gaussian kernel. As can be seen in (Table 1),
+many 5s, 7s, and 9s were mistaken to be 1s, which makes sense because the Hamming distances between 5 and 1, 7 and 1, and 9 and 1 was only 3.
 
-Finally, we produced a noticeable relationship between percent of labeled data and classification accuracy. \par
+The semi-supervised neural network did about as well as the baseline TSVM approach. Also, it is not clear that the unlabeled data assisted much except possibly preventing overfitting. Increasing the number of hidden variables and performing gradient descent for more iterations would have perhaps have resulted in a better fit.
 
-%[Insert graph of classification accuracy vs percent of labeled data]\par
 \begin{figure}
   \centering
-  \caption{The following graph plots accuracy of our TSVM classifier based on the fraction of labeled data. We ran the TSVM on 0.5\%, 1\%, 2\%, 5\%, 10\%, 20\%, 50\%, and 80\% labeled data. Note as the amount of labeled data increases, it becomes marginally less useful.}
   \includegraphics[width=5in]{figure_1.png}
+  \caption{A plot of the accuracy of our TSVM classifier vs the fraction of labeled data. Some of the techniques have missing entries. Note as the amount of labeled data increases, unlabeled data becomes marginally less useful.}
 \end{figure}
 
-%[Insert comments about digits that the TSVM often mistook for another]
-
-As can be seen in the confusion matrix of the error correcting codes,
-5, 7 and 9 were misclassified by 1's and the codewords for
-these digits that we picked had Hamming distance 3 away from 1, which
-explains why the confusion was likely.
-
-The semi-supervised neural network did about as well as the baseline TSVM approach. Also, it is not clear that the unlabeled data assisted much except possibly preventing overfitting. Increasing the number of hidden and performing gradient descent for more iterations would have perhaps resulted in a better fit, but also would also risk overfitting; albeit the unlabeled data would help prevent that. 
-
-We also implemented the spectral graph transducer in \cite{joachims2003transductive}, however our classifier
+We also implemented the spectral graph transducer in \cite{joachims2003transductive}; however, our classifier
 produced degenerate classifications, classifying every example as either 1 or 2.
 
-\section{Conclusions and Lessons Learned}
+\section{Conclusions}
+We believe that our TSVM with the Gaussian Kernel performed well, especially when there was a very small amount of labeled data.
+To confirm this, we ran an identical SVM on 1\% and 10\% of the data, discarding the unlabeled examples. For 1\%, the SVM had 73\% accuracy, which is noticeably worse than the
+TSVM's 87\%. However, on 10\% of the data, the SVM almost performed as well as the TSVM, differing only by 0.3\%. Thus, the benefit of the unlabeled data quicky drops off. \par
+The difference between the baseline TSVM, which used a degree-5 polynomial kernel, and the Gaussian kernel TSVM is large. This shows the trade-off between bias and variance, because degree-5 polynomials obviously cannot represent as many functions as the Gaussian kernel, and there was enough data in the problem that overfitting is less of an issue. We believe the drop in baseline TSVM from 5\% to 10\% shown in Figure 1 is due to the randomness in our data selection and algorithms. \par
+We found it surprising that for TSVMs, a straightforward one-vs-all
+approach performed better than the error-correcting codes approach,
+since the latter approach was engineered to be robust to classification
+error. An approach that might have yielded better results is
+using a code with greater redundancy such as the Hadamard
+code \cite{macwilliams1977theory}. 
+This way, the algorithm would be robust to more errors on separate entries
+of the tuple.
+Additionally, the way the codewords were assigned to digits was arbitrary
+and a more careful assignment that put more distant codewords on
+similar digits (like 1 and 7, or 4 and 9) would decrease the chance
+of the algorithm confusing similar digits.
+Our implementation of one-vs-all took the margin of classification
+into account (in particular, it returned the class with maximum margin of
+classification), but our approach using error correcting codes does not do that,
+which might be a reason one-vs-all slightly 
+outperforms error correction. This may suggest that having a high margin
+on a single classifier is more indicative of the correct class than
+the number of classifiers that correctly classified a point.\par
+Finally, we think predicting handwriting using timestamps has important advantages and disadvantages over the standard technique. We can see from Table 1 that digits that look very similar and would likely be confused by a standard image classifier, like 5 and 6, were rarely confused with each other because they are drawn with very different hand strokes. However, our approach is less granular than an image, because we only use samples from 8 points in time. Thus, our algorithm is more susceptible to classifying digits that may have similar stroke patterns, like 1 and 9, where only a small number of the 8 data points when drawing the top of the 9.
+\section{Lessons Learned}
 
 From completing this project, we have learned a few important ideas about semisupervised learning. 
 
