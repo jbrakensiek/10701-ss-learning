@@ -251,6 +251,9 @@ outperforms error correction. This may suggest that having a high margin
 on a single classifier is more indicative of the correct class than
 the number of classifiers that correctly classified a point.\par
 Finally, we think predicting handwriting using timestamps has important advantages and disadvantages over the standard technique. We can see from Table 1 that digits that look very similar and would likely be confused by a standard image classifier, like 5 and 6, were rarely confused with each other because they are drawn with very different hand strokes. However, our approach is less granular than an image, because we only use samples from 8 points in time. Thus, our algorithm is more susceptible to classifying digits that may have similar stroke patterns, like 1 and 9, where only a small number of the 8 data points when drawing the top of the 9.
+
+
+The neural networks seemed to be a fruitful general method for solving the problem, and were able to nicely accommodate unlabeled data through the pseudo-label method, but they got stuck in local optimal solutions too easily and thus were unable to surpass the baseline TSVMs. Perhaps, with more tuning, the neural networks could have achieved better testing accuracy.
 \section{Lessons Learned}
 
 From completing this project, we have learned a few important ideas about semisupervised learning. 
