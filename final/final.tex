@@ -121,9 +121,9 @@ classify the datapoint as digit 2.
 A distinct advantage this might have over the one-vs-all
 classifier is its robustness if one classifier makes a mistake.
 
-\subsection{Autoencoder + TSVM}
+%\subsection{Autoencoder + TSVM}
 
-[ACTUALLY DO THIS] An additional aspect we explored is trying different representations of our feature space (besides kernels). The different representation we tried is a compressed one using an autoencoder. We modified the neural network code mentioned above to produce to train an autoencoder on both the labeled and unlabeled training examples. Using the representation given by the hidden units in this autoencoder, we then trained a family of TSVMs to classify this data.
+%[ACTUALLY DO THIS] An additional aspect we explored is trying different representations of our feature space (besides kernels). The different representation we tried is a compressed one using an autoencoder. We modified the neural network code mentioned above to produce to train an autoencoder on both the labeled and unlabeled training examples. Using the representation given by the hidden units in this autoencoder, we then trained a family of TSVMs to classify this data.
 
 \subsection{Spectral Graph Transducer}
 Another method we use is a semi-supervised version of $k$-Nearest Neighbors known as the Spectral Graph Transducer, as described in \cite{joachims2003transductive}. First, a similarity
@@ -250,9 +250,7 @@ The neural network did about as well as the baseline TSVM approach. Also, it is 
   \end{tabular}
   \end{table}
 
-Finally, we produced a noticeable relationship between percent of labeled data and classification accuracy [REMAKE PLOT FOR GAUSSIAN KERNEL ON
-one-vs-all ON 20\% LABELED DATA AND (POSSIBLY) ADD CONFUSION MATRIX
-FOR one-vs-all] \par
+Finally, we produced a noticeable relationship between percent of labeled data and classification accuracy. \par
 
 %[Insert graph of classification accuracy vs percent of labeled data]\par
 \begin{figure}
@@ -268,16 +266,26 @@ As can be seen in the confusion matrix of the error correcting codes,
 these digits that we picked had Hamming distance 3 away from 1, which
 explains why the confusion was likely.
 
-
-\section{Future Plans}
-
-[INTEGRATE THESE THINGS]
-
-Another area of exploration is trying different kernels for the TSVM, perhaps something more complex than a linear kernel and not as advanced as a Gaussian kernel. Doing feature selection could help us find a good kernel. For example, we could change the algorithm of \cite{Joachims:1999} by not enforcing exactly $num_+$ examples to be classified as +1. Another approach would be to use the Graph kernel methods of \cite{smola2003kernels}. We would also like to try different values for the parameters in the algorithm.
+We also implemented the spectral graph transducer in \cite{joachims2003transductive}, however our classifier
+produced degenerate classifications, classifying every example as either 1 or 2.
 
 \section{Conclusions and Lessons Learned}
 
 From completing this project, we have learned a few important ideas about semisupervised learning. 
+
+Given that our classifier worked well even using a tiny amount of labeled data,
+one key idea we learned was that unlabeled data can be powerful in learning the structure of the data
+and separate the data into classes, while the difference made in labeled data is in naming the classes,
+and roughly knowing the distribution of labels in unlabeled data.
+
+We also developed intuition on the edge that semisupervised learning has over unsupervised learning.
+Under the assumption that labeled and unlabeled data are drawn from the same distribution, the ratio of
+sizes of classes (where a class is all datapoints with the same label) are roughly the same in labeled
+and unlabeled data. Most of the algorithms we implemented constrained the ratios of labels
+assigned by the algorithm to the unlabeled data to be roughly the same as the ratios of labeled assigned
+by the algorithm to labeled data. Thus, having even a few labels is powerful in learning the sizes of
+classes: information that isn't available in the setting of unsupervised learning that could lead to
+degenerate behavior.
 
 We learned the notion of the bandwidth of a kernel, that is,
 how certain constant parameters can make a big difference in how well

@@ -103,8 +103,6 @@ INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/public/amsfonts/symbols/
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
-INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
-INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 OUTPUT final.pdf
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
@@ -115,12 +113,14 @@ INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
+INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
 INPUT /usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
-INPUT tsvm.pdf
-INPUT ./tsvm.pdf
-INPUT ./tsvm.pdf
+INPUT figure_1.png
+INPUT ./figure_1.png
+INPUT ./figure_1.png
 INPUT final.bbl
 INPUT final.bbl
 INPUT final.aux

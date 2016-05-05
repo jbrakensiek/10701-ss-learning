@@ -1,48 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: final.aux
 The style file: alpha.bst
 Database file #1: final.bib
 Warning--empty journal in Alpaydin:1998
-You've used 13 entries,
+You've used 12 entries,
             2543 wiz_defined-function locations,
-            632 strings with 6635 characters,
-and the built_in function-call counts, 5269 in all, are:
-= -- 511
-> -- 250
-< -- 11
-+ -- 86
-- -- 83
-* -- 325
-:= -- 850
-add.period$ -- 41
-call.type$ -- 13
-change.case$ -- 82
-chr.to.int$ -- 12
-cite$ -- 14
-duplicate$ -- 238
-empty$ -- 407
-format.name$ -- 99
-if$ -- 1113
+            626 strings with 6497 characters,
+and the built_in function-call counts, 4720 in all, are:
+= -- 450
+> -- 231
+< -- 10
++ -- 80
+- -- 77
+* -- 293
+:= -- 770
+add.period$ -- 37
+call.type$ -- 12
+change.case$ -- 76
+chr.to.int$ -- 11
+cite$ -- 13
+duplicate$ -- 211
+empty$ -- 363
+format.name$ -- 92
+if$ -- 987
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 12
-newline$ -- 68
-num.names$ -- 39
-pop$ -- 108
+missing$ -- 11
+newline$ -- 63
+num.names$ -- 36
+pop$ -- 100
 preamble$ -- 1
-purify$ -- 95
+purify$ -- 88
 quote$ -- 0
-skip$ -- 198
+skip$ -- 175
 stack$ -- 0
-substring$ -- 212
-swap$ -- 54
-text.length$ -- 11
+substring$ -- 173
+swap$ -- 44
+text.length$ -- 10
 text.prefix$ -- 5
 top$ -- 0
-type$ -- 100
+type$ -- 92
 warning$ -- 1
-while$ -- 45
-width$ -- 16
-write$ -- 167
+while$ -- 39
+width$ -- 14
+write$ -- 153
 (There was 1 warning)

@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex final"] 1462371687 "final.aux" "final.bbl" "final" 1462372918
+["bibtex final"] 1462406375 "final.aux" "final.bbl" "final" 1462406878
   "/usr/local/texlive/2015basic/texmf-dist/bibtex/bst/base/alpha.bst" 1292289607 23907 a5f93555796fb564b924339521f10a7c ""
-  "final.aux" 1462372918 1241 2a61e6731b9d3bf411c1461c7b4778e6 ""
+  "final.aux" 1462406878 1194 3edc5c3f9925b1e441f1c926bef32671 ""
   "final.bcf" 0 -1 0 ""
   "final.bib" 1462371290 4941 fefd4e93f352d131f3f91b50b3b88f15 ""
   (generated)
-  "final.bbl"
   "final.blg"
-["pdflatex"] 1462372918 "final.tex" "final.pdf" "final" 1462372918
-  "./tsvm.pdf" 1462310091 12919 ebb2f93a92ca8640f5156ffa721401ff ""
+  "final.bbl"
+["pdflatex"] 1462406878 "final.tex" "final.pdf" "final" 1462406878
+  "./figure_1.png" 1462404596 50793 5403445d6b7c5ab0e660188d790bb2b5 ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/helvetic/phvb.tfm" 1136768653 2300 14616918391efa49ac8b481a75fbdc1a ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1136768653 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -85,12 +85,12 @@
   "/usr/local/texlive/2015basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1457017251 80943 78b2dd7be102b2e2876f6ae84d645e2d ""
   "/usr/local/texlive/2015basic/texmf-var/web2c/pdftex/pdflatex.fmt" 1446607124 2499808 b5b11ae4f77197b6b659341d0ba65ba0 ""
   "/usr/local/texlive/2015basic/texmf.cnf" 1432478332 628 096f87b1123b576e7bac81e7554a490e ""
-  "final.aux" 1462372918 1241 2a61e6731b9d3bf411c1461c7b4778e6 ""
-  "final.bbl" 1462371687 2820 09c6e6dd7be6b4098dc805d64496d89d "bibtex final"
-  "final.tex" 1462372918 21605 820e5a5a4c594eaa2c05195f6c41baf4 ""
+  "figure_1.png" 1462404596 50793 5403445d6b7c5ab0e660188d790bb2b5 ""
+  "final.aux" 1462406878 1194 3edc5c3f9925b1e441f1c926bef32671 ""
+  "final.bbl" 1462406375 2613 4156c3b45bdca3fda45667c3c2452f60 "bibtex final"
+  "final.tex" 1462406877 22391 c370eda2bea69528ffb3029a8a01d758 ""
   "nips15submit_e.sty" 1462310091 8803 784aaa77f10103969889b615d80ad28a ""
-  "tsvm.pdf" 1462310091 12919 ebb2f93a92ca8640f5156ffa721401ff ""
   (generated)
+  "final.pdf"
   "final.aux"
   "final.log"
-  "final.pdf"
