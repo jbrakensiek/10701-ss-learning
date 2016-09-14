@@ -3,3 +3,12 @@ Datasets obtained from
 https://archive.ics.uci.edu/ml/datasets/Pen-Based+Recognition+of+Handwritten+Digits
 
 https://archive.ics.uci.edu/ml/machine-learning-databases/uji-penchars/version2/
+
+Files used
+
+pendigits.names
+pendigits.tes
+pendigits.tra
+
+uji2.names
+ujipenchars2.txt
